@@ -16,17 +16,26 @@
     <textarea id="comment" name="comment" rows="6" cols="60" readonly>{{ $feedback->comment }}</textarea>
     <br>
 
-    <button type="button">
-        <a href="{{ route('books.show', ['book' => $book]) }}">
-            Back
-        </a>
-    </button>
+    <form action="{{ route('books.feedbacks.destroy', ['book' => $book, 'feedback' => $feedback]) }}" method="post">
+        @csrf
+        @method('delete')
 
-    <button type="button">
-        <a href="{{ route('books.feedbacks.edit', ['book' => $book, 'feedback' => $feedback]) }}">
-            Edit
-        </a>
-    </button>
+        <button type="button">
+            <a href="{{ route('books.show', ['book' => $book]) }}">
+                Back
+            </a>
+        </button>
+
+        <button type="button">
+            <a href="{{ route('books.feedbacks.edit', ['book' => $book, 'feedback' => $feedback]) }}">
+                Edit
+            </a>
+        </button>
+
+        <button type="submit">
+            Delete
+        </button>
+    </form>
 
     <hr>
     @include('auth.temp.session-message')

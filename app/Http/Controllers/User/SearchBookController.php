@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\Booktype;
 
 class SearchBookController extends Controller
 {
@@ -18,7 +19,9 @@ class SearchBookController extends Controller
     {
         $this->authorize('viewAny', Book::class);
         
-        return view('user.search-books-page');
+        $booktypes = Booktype::all();
+
+        return view('user.search-books-page', ['booktypes' => $booktypes]);
     }
 
     /**
@@ -31,12 +34,11 @@ class SearchBookController extends Controller
     public function search(Request $request)
     {
         $this->authorize('viewAny', Book::class);
-
-        //$param = $request->all();
-        //$books = Book::filter($param)->paginate(5);
-        $books = Book::where('title', 'LIKE', '%'. $request->title .'%')
-                    ->orderBy('updated_at', 'DESC')
-                    ->simplePaginate(10)->withQueryString();
+        $param = $request->all();
+        
+        $books = Book::filter($param)
+                     ->orderBy('updated_at', 'DESC')
+                     ->simplePaginate(10)->withQueryString();
         
         if($request->ajax())
         {
@@ -44,7 +46,8 @@ class SearchBookController extends Controller
         }
         else
         {
-            return view('user.search-books-page', ['books' => $books]);
+            $booktypes = Booktype::all();
+            return view('user.search-books-page', ['books' => $books, 'booktypes' => $booktypes]);
         }
     }
 }

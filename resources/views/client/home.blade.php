@@ -13,4 +13,9 @@
     <a href="{{ route('books.search-page') }}">
         To search books page
     </a>
+    <br><br>
+
+    <a href="{{ route('books.borrows.index') }}">
+        To borrow history
+    </a>
 @endsection

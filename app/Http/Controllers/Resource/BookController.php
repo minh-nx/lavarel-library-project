@@ -5,10 +5,20 @@ namespace App\Http\Controllers\Resource;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Book;
-use Illuminate\Support\Facades\Gate;
 
 class BookController extends Controller
 {
+    /**
+     * Create the controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        // Automatically invoked the policy registered for Book class each time a corresponding method is called
+        $this->authorizeResource(Book::class, 'book');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,9 +26,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        $this->authorize('viewAny', Book::class);
-
-        $books = Book::orderBy('updated_at', 'DESC')->simplePaginate(10)->withQueryString();
+        $books = Book::with('booktypes')->orderBy('updated_at', 'DESC')->simplePaginate()->withQueryString();
         return view('resources.books.books-index', ['books' => $books]);
     }
 
@@ -29,7 +37,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        $this->authorize('create', Book::class);
+
     }
 
     /**
@@ -40,7 +48,7 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('create', Book::class);
+
     }
 
     /**
@@ -51,10 +59,8 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        $this->authorize('view', $book);
-
         $book->loadAvg('feedbacks as average_rating', 'rating');
-        return view('resources.books.books-show', ['book' => $book]);
+        return view('resources.books.books-show-test', ['book' => $book]);
     }
 
     /**
@@ -65,7 +71,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        $this->authorize('update', $book);
+
     }
 
     /**
@@ -77,7 +83,7 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        $this->authorize('update', $book);
+
     }
 
     /**
@@ -88,6 +94,6 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        $this->authorize('delete', $book);
+
     }
 }

@@ -34,9 +34,10 @@ class BookFactory extends Factory
             'title' => $title,
             'slug' => $slug,
             'author' => $this->truncateNameTitle($faker_vn->name()),
-            'publication_year' => now()->year,
+            'publication_year' => $faker_vn->year(),
             'cover_image' => url('storage/images/book-covers/'. 'sample-book-cover.png'),
             'description' => $faker_vn->paragraph(3),
+            'quantity' => $faker_vn->numberBetween(1, 10),
         ];
     }
 
@@ -49,8 +50,7 @@ class BookFactory extends Factory
     private function truncateNameTitle(string $name) : string
     {
         $offset = mb_strpos($name, '.');
-        if($offset !== false)
-        {
+        if($offset !== false) {
             $name = mb_substr($name, $offset + 1);
         }
 

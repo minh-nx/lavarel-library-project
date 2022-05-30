@@ -5,32 +5,35 @@
         $books->loadAvg('feedbacks as average_rating', 'rating');
     @endphp
     
-    <table>
-        <thead>
-            <th>Cover image</th>
+    <table style="width:100%">
+        <thead style="text-align: center;">
+            <th>Cover Image</th>
             <th>Title</th>
-            <th>Rating</th>
             <th>Author</th>
-            <th>Publication year</th>
-            <th>Description</th>
-            <th>Quantity</th>
+            <th>Publication Year</th>
+            <th>Type</th>
+            <th>Rating</th>
+            <th>Status</th>
+            @can('books.update')
+                <th>Action</th>
+            @endcan
         </thead>
         <tbody>
             @foreach ($books as $book)
                 <tr>
-                    <td> 
-                        <a href="{{ route('books.show', ['book' => $book]) }}" title="Click to view '{{ $book->title }}'"> 
-                            <img src="{{ $book->cover_image }}" alt="{{ $book->title }}'s cover" style="max-width:200px; max-height:200px"> 
+                    <td style="text-align: center;"> 
+                        <a href="{{ route('books.show', ['book' => $book]) }}"> 
+                            <img src="{{ $book->cover_image }}" alt="{{ $book->title }}'s cover" style="max-width:200px; max-height:200px;"> 
                         </a> 
                     </td>
                     <td> {{ $book->title }} </td>
-                    <td> {{ isset($book->average_rating) ? round($book->average_rating, 2) : '-' }} </td>
                     <td> {{ $book->author }} </td>
-                    <td> {{ $book->publication_year }} </td>
-                    <td> {{ $book->description }} </td>
-                    <td> {{ $book->quantity }} </td>
+                    <td style="text-align: center;"> {{ $book->publication_year }} </td>
+                    <td> {{ booktypesString($book->booktypes) }} </td>
+                    <td style="text-align: center;"> {{ bookAvgRating($book) }} </td>
+                    <td style="text-align: center;"> {{ $book->status }} </td>
                     @can('books.update')
-                        <td><a href="{{ route('books.edit', ['book' => $book]) }}">Edit</a></td>
+                        <td style="text-align: center;"><a href="{{ route('books.edit', ['book' => $book]) }}">Edit</a></td>
                     @endcan
                 </tr>
             </tbody>

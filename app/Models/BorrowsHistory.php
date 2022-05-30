@@ -2,28 +2,27 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Carbon\Carbon;
 
-class Borrow extends Pivot
+class BorrowsHistory extends Model
 {
-    public const BORROW_MAX_COUNT = 5;
-    public const BORROW_MAX_DAY = 30;
-    
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'borrows';
+    protected $table = 'borrows_history';
 
     /**
      * The attributes that are not mass assignable.
      *
      * @var array<int, string>
      */
-    protected $guarded = []; // All attributes are mass assignable
+    protected $guarded = [
+        'id',
+    ];
 
     /**
      * The attributes that should be cast.
@@ -31,14 +30,10 @@ class Borrow extends Pivot
      * @var array<string, string>
      */
     protected $casts = [
+        'borrowed_date' => 'date',
+        'due_date' => 'date',
+        'returned_date' => 'date',
     ];
-
-    /**
-     * Indicates if the model's ID is auto-incrementing.
-     *
-     * @var bool
-     */
-    public $incrementing = false;
 
     /**
      * Indicates if the model should be timestamped.
@@ -48,6 +43,22 @@ class Borrow extends Pivot
     public $timestamps = false;
 
     protected $dateFormat = 'Y-m-d';
+
+    /**
+     * Get the book having the borrow history
+     */
+    public function book()
+    {
+        return $this->belongsTo(Book::class);
+    }
+
+    /**
+     * Get the user having the borrow history
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     /**
      * Always format the borrowed date after retrieving it

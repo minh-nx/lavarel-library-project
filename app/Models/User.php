@@ -62,6 +62,16 @@ class User extends Authenticatable implements MustVerifyEmail
     public $incrementing = false;
 
     /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
+
+    /**
      * Get the feedbacks of the user
      */
     public function feedbacks()
@@ -85,7 +95,9 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function returnedBooks()
     {
-        return $this->books()->wherePivotNotNull('returned_date');
+        return Book::whereIn('id', BorrowsHistory::select('book_id')
+                                                 ->where('user_id', $this->getAttribute('id'))
+                            );
     }
 
     /**
@@ -102,6 +114,24 @@ class User extends Authenticatable implements MustVerifyEmail
     public function feedbackBooks()
     {
         return $this->hasManyThrough(Book::class, Feedback::class);
+    }
+
+    /**
+     * Get the borrows history of the user
+     */
+    public function borrows_history()
+    {
+        return $this->hasMany(BorrowsHistory::class);
+    }
+
+    /**
+     * Helper function to count the number of books the user is borrowing
+     * 
+     * @return string
+     */
+    public function borrowCount() : int
+    {
+        return $this->borrowingBooks()->count();
     }
 
     /**

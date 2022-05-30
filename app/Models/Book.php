@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Custom\Traits\Filterable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Book extends Model
 {
@@ -24,7 +26,6 @@ class Book extends Model
      * @var array<string, string>
      */
     protected $filterable = [
-        'publication_year',
     ];
 
     /**
@@ -48,13 +49,25 @@ class Book extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'publication_year' => 'integer',
     ];
 
     /**
-     * Filter a book's title using LIKE
+     * Pseudo field represents availability of the book
      *
-     * @var array<string, string>
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    public function status() : Attribute
+    {
+        return Attribute::make(
+            get: fn($value, $attributes) => ($attributes['quantity'] > 0) ? 'Available' : 'Unavailable',
+        );
+    }
+
+    /**
+     * Filter books by title using LIKE
+     *
+     * @param string $value
+     * @return $query
      */
     public function filterTitle($query, $value)
     {
@@ -62,9 +75,10 @@ class Book extends Model
     }
 
     /**
-     * Filter a book's author using LIKE
+     * Filter books by author using LIKE
      *
-     * @var array<string, string>
+     * @param string $value
+     * @return $query
      */
     public function filterAuthor($query, $value)
     {
@@ -72,13 +86,54 @@ class Book extends Model
     }
 
     /**
-     * Filter a book's description using LIKE
+     * Filter books by publication year using LIKE
      *
-     * @var array<string, string>
+     * @param string $value
+     * @return $query
      */
-    public function filterDescription($query, $value)
+    public function filterPublicationYear($query, $value)
     {
-        return $query->where('author', 'LIKE', '%' . $value . '%');
+        return $query->where('publication_year', 'LIKE', '%' . $value . '%');
+    }
+
+    /**
+     * Filter books by book types
+     *
+     * @param array $ids IDs of types to filter
+     * @return $query
+     */
+    public function filterBooktypes($query, array $ids)
+    {
+        foreach($ids as $id) {
+            $query->whereExists(function ($query) use($id){
+                $query->select(DB::raw(1))
+                      ->from('book_booktype')
+                      ->whereColumn('book_booktype.book_id', 'books.id')
+                      ->where('book_booktype.booktype_id', $id);
+            });
+        }
+
+        return $query;
+    }
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    protected static function newFactory()
+    {
+        return \Database\Factories\BookFactory::new();
+    }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 
     /**
@@ -134,7 +189,9 @@ class Book extends Model
      */
     public function returnedUsers()
     {
-        return $this->users()->wherePivotNotNull('returned_date');
+        return User::whereIn('id', BorrowsHistory::select('user_id')
+                                                 ->where('book_id', $this->getAttribute('id'))
+                            );
     }
 
     /**
@@ -154,23 +211,11 @@ class Book extends Model
     }
 
     /**
-     * Create a new factory instance for the model.
-     *
-     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     * Get the borrows history of the book
      */
-    protected static function newFactory()
+    public function borrows_history()
     {
-        return \Database\Factories\BookFactory::new();
-    }
-
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-    public function getRouteKeyName()
-    {
-        return 'slug';
+        return $this->hasMany(BorrowsHistory::class);
     }
 
     /**

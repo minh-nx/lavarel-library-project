@@ -39,7 +39,10 @@ class PermissionRoleSeeder extends Seeder
 
         $accessClientPagesPermission = Permission::create(['name' => 'access client pages']);
         $searchBooksPermission = Permission::create(['name' => 'books.search']);
-        $borrowBooksPermission = Permission::create(['name' => 'books.borrow']);
+        $readBorrowBooksPermission = Permission::create(['name' => 'books.borrows.read']);
+        $createBorrowBooksPermission = Permission::create(['name' => 'books.borrows.create']);
+        $updateBorrowBooksPermission = Permission::create(['name' => 'books.borrows.update']);
+        $deleteBorrowBooksPermission = Permission::create(['name' => 'books.borrows.delete']);
         $createFeedbacksPermission = Permission::create(['name' => 'feedbacks.create']);
         $readFeedbacksPermission = Permission::create(['name' => 'feedbacks.read']);
         $updateFeedbacksPermission = Permission::create(['name' => 'feedbacks.update']);
@@ -64,12 +67,18 @@ class PermissionRoleSeeder extends Seeder
             $sendNotificationsPermission,
 
             $searchBooksPermission,
+            $readBorrowBooksPermission,
+            $updateBorrowBooksPermission,
+            $deleteBorrowBooksPermission,
         ];
 
         $clientPermissions = [
             $accessClientPagesPermission,
             $searchBooksPermission,
-            $borrowBooksPermission,
+            $createBorrowBooksPermission,
+            $readBorrowBooksPermission,
+            $updateBorrowBooksPermission,
+            $deleteBorrowBooksPermission,
             $createFeedbacksPermission,
             $readFeedbacksPermission,
             $updateFeedbacksPermission,

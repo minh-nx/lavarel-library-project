@@ -94,18 +94,6 @@ class BookPolicy
     }
 
     /**
-     * Determine whether the user can borrow the book.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Book  $book
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function borrow(User $user, Book $book)
-    {
-        return $user->can('books.borrow');
-    }
-
-    /**
      * Determine whether the user can view any borrows associating with them and the book
      *
      * @param  \App\Models\User  $user
@@ -113,7 +101,7 @@ class BookPolicy
      */
     public function viewAnyBorrow(User $user)
     {
-        return $user->can('books.borrow');
+        return $user->can('books.borrows.read');
     }
 
     /**
@@ -125,7 +113,31 @@ class BookPolicy
      */
     public function viewBorrow(User $user, Book $book)
     {
-        return $user->can('books.borrow');
+        return $user->can('books.borrows.read');
+    }
+
+    /**
+     * Determine whether the user can borrow the book.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Book  $book
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function createBorrow(User $user, Book $book)
+    {
+        return $user->can('books.borrows.create');
+    }
+
+    /**
+     * Determine whether the user can borrow the book.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Book  $book
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function updateBorrow(User $user, Book $book)
+    {
+        return $user->can('books.borrows.update');
     }
 
     /**
@@ -137,7 +149,7 @@ class BookPolicy
      */
     public function deleteBorrow(User $user, Book $book)
     {
-        return $user->can('books.borrow') && $book->isUserBorrowing($user) ? Response::allow()
-                                                                           : Response::deny('You have not borrowed the book');
+        return $user->can('books.borrows.delete') && $book->isUserBorrowing($user) ? Response::allow()
+                                                                                   : Response::deny('You have not borrowed the book');
     }
 }

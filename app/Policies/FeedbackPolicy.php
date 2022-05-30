@@ -45,7 +45,8 @@ class FeedbackPolicy
      */
     public function view(User $user, Feedback $feedback)
     {
-        return $user->can('feedbacks.read');
+        return $user->can('feedbacks.read') && $user->id == $feedback->user_id ? Response::allow()
+                                                                               : Response::deny('You do not own the feedback');;
     }
 
     /**

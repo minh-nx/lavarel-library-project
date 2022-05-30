@@ -24,8 +24,8 @@ class BorrowBookRequest extends FormRequest
     public function rules()
     {
         return [
-            'borrowed_date' => ['required', 'date'],
-            'due_date' => ['required', 'date', 'after_or_equal:borrowed_date'],
+            'borrowed_date' => ['required', 'date', 'after_or_equal:today'],
+            'term' => ['required', 'numeric', 'integer', 'min:1', 'max:'. \App\Models\Borrow::BORROW_MAX_DAY],
         ];
     }
 }

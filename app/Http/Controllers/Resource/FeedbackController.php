@@ -11,6 +11,17 @@ use App\Http\Requests\Resources\FeedbackRequest;
 class FeedbackController extends Controller
 {
     /**
+     * Create the controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        // Automatically invoked the policy registered for Feedback class each time a corresponding method is called
+        $this->authorizeResource(Feedback::class, 'feedback');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @param  \App\Models\Book $book
@@ -18,7 +29,8 @@ class FeedbackController extends Controller
      */
     public function index(Book $book)
     {
-        
+        $feedbacks = $book->sortedFeedbacks()->simplePaginate();
+        return view('resources.feedbacks.feedbacks-index', ['book' => $book, 'feedbacks' => $feedbacks]);
     }
 
     /**
@@ -29,8 +41,6 @@ class FeedbackController extends Controller
      */
     public function create(Book $book)
     {
-        $this->authorize('create', Feedback::class);
-
         $feedback = Feedback::where('book_id', $book->id)
                             ->where('user_id', auth()->user()->id)
                             ->first();
@@ -52,8 +62,6 @@ class FeedbackController extends Controller
      */
     public function store(FeedbackRequest $request, Book $book)
     {
-        $this->authorize('create', Feedback::class);
-
         $data = $request->validated();
 
         $feedback = new Feedback();
@@ -76,8 +84,6 @@ class FeedbackController extends Controller
      */
     public function show(Book $book, Feedback $feedback)
     {
-        $this->authorize('viewAny', $feedback);
-
         return view('resources.feedbacks.feedbacks-show', ['book' => $book, 'feedback' => $feedback]);
     }
 
@@ -90,8 +96,6 @@ class FeedbackController extends Controller
      */
     public function edit(Book $book, Feedback $feedback)
     {
-        $this->authorize('update', $feedback);
-        
         return view('resources.feedbacks.feedbacks-edit', ['book' => $book, 'feedback' => $feedback]);
     }
 
@@ -105,8 +109,6 @@ class FeedbackController extends Controller
      */
     public function update(FeedbackRequest $request, Book $book, Feedback $feedback)
     {
-        $this->authorize('update', $feedback);
-
         $data = $request->validated();
 
         $feedback->rating = $data['rating'];
@@ -126,6 +128,8 @@ class FeedbackController extends Controller
      */
     public function destroy(Book $book, Feedback $feedback)
     {
+        $feedback->delete();
 
+        return redirect()->route('books.show', ['book' => $book])->with('success', 'Feedback deleted successfully');
     }
 }
