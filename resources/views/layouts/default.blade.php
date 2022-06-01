@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <title> @yield('title') </title>
-        
+
         @section('meta')
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,6 +13,9 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" />
+
+        {{-- Font Awesome Icon Kit --}}
+        <script src="https://kit.fontawesome.com/884056f55a.js" crossorigin="anonymous"></script>
     </head>
 
     <body>
@@ -27,13 +30,13 @@
                 Login
             </a>
             <br>
-            
+
             <a href="{{ route('register') }}">
                 Register
             </a>
             <br>
         @endguest
-            
+
         @auth
             @can('access admin pages')
                 <a href="{{ route('admin.dashboard') }}">
@@ -52,7 +55,7 @@
             </a>
             <br>
         @endauth
-    
+
         <a href="{{ route('about-us') }}">
             About Us
         </a>
@@ -60,6 +63,11 @@
 
         {{-- Heading --}}
         @yield('heading')
+
+        @can('permissions.manage')
+            {{-- Button --}}
+            @yield('buttons')
+        @endcan
 
         <hr>
         {{-- Main content --}}

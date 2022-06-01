@@ -29,3 +29,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/search-books', [\App\Http\Controllers\User\SearchBookController::class, 'index'])->name('books.search-page');
     Route::get('/search-books/query', [\App\Http\Controllers\User\SearchBookController::class, 'search'])->name('books.search');
 });
+
+Route::group(['middleware' => ['role_or_permission:superadmin|permissions.manage']], function () {
+    Route::resource('permissions', \App\Http\Controllers\PermissionController::class);
+});

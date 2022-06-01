@@ -19,4 +19,16 @@
         List books
     </a>
     <br><br>
+
+    <a href="{{ route('books.index') }}">
+        Track Borrowed Books
+    </a>
+    <br><br>
+
+    @can('permissions.manage')
+        <a href="{{ route('permissions.index') }}">
+            Manage Permissions
+        </a>
+    @endcan
+    <br><br>
 @endsection
