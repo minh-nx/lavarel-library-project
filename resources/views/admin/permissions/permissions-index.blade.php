@@ -1,5 +1,11 @@
 @extends('layouts.default')
 
+@section('title', 'Create Permissions')
+
+@section('heading')
+    <h1>This is permission index page</h1>
+@endsection
+
 @section('buttons')
 <a class="btn btn-primary" href="{{ route('permissions.create') }}" role="button"><i class="fa-solid fa-plus"></i> Add New Permission</a>
 @endsection

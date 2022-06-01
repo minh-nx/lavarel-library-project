@@ -1,5 +1,11 @@
 @extends('layouts.default')
 
+@section('title', 'Create Permissions')
+
+@section('heading')
+    <h1>This is permission create page</h1>
+@endsection
+
 @section('content')
     <div class="col">
         <form action="{{ route('permissions.store') }}" method="POST">

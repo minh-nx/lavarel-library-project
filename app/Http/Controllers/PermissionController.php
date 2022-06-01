@@ -59,7 +59,7 @@ class PermissionController extends Controller
      */
     public function show(Permission $permission)
     {
-        //
+        return view('admin.permissions.permission-show', ['permission' => $permission]);
     }
 
     /**
