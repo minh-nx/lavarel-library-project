@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('cover_image');
             $table->text('description')->nullable();
             $table->unsignedInteger('quantity')->default(1);
-            $table->softDeletes();
             $table->timestamps();
 
             $table->unique('title', 'books_title_unique');

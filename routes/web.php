@@ -23,6 +23,7 @@ require __DIR__.'/admin.php';
 require __DIR__.'/client.php';
 
 Route::middleware(['auth', 'verified'])->group(function() {
+    Route::resource('users', \App\Http\Controllers\Resource\UserController::class);
     Route::resource('books', \App\Http\Controllers\Resource\BookController::class);
     Route::resource('books.feedbacks', \App\Http\Controllers\Resource\FeedbackController::class);
 

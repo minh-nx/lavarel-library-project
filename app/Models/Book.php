@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Custom\Traits\Filterable;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Book extends Model
 {
-    use HasFactory, Filterable, SoftDeletes;
+    use HasFactory, Filterable;
 
     /**
      * The table associated with the model.

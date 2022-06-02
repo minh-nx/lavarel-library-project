@@ -7,7 +7,7 @@
     <strong>APP_URL</strong> variable.
 </p>
 <p>
-    You may need to run these Artisan command in order to properly run the application:
+    You may need to run these Artisan commands in order to properly run the application:
     <ul> 
         <li>
             <code>composer dump-autoload</code> Artisan command to load global helper functions.

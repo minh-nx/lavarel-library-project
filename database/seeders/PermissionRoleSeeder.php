@@ -27,31 +27,43 @@ class PermissionRoleSeeder extends Seeder
         $managePermissionsPermission = Permission::create(['name' => 'permissions.manage']);
 
         $accessAdminPagesPermission = Permission::create(['name' => 'access admin pages']);
+        $accessClientPagesPermission = Permission::create(['name' => 'access client pages']);
+
         $createBooksPermission = Permission::create(['name' => 'books.create']);
         $readBooksPermission = Permission::create(['name' => 'books.read']);
         $updateBooksPermission = Permission::create(['name' => 'books.update']);
         $deleteBooksPermission = Permission::create(['name' => 'books.delete']);
+
         $createBooktypesPermission = Permission::create(['name' => 'booktypes.create']);
         $readBooktypesPermission = Permission::create(['name' => 'booktypes.read']);
         $updateBooktypesPermission = Permission::create(['name' => 'booktypes.update']);
         $deleteBooktypesPermission = Permission::create(['name' => 'booktypes.delete']);
-        $sendNotificationsPermission = Permission::create(['name' => 'notifications.send']);
-
-        $accessClientPagesPermission = Permission::create(['name' => 'access client pages']);
-        $searchBooksPermission = Permission::create(['name' => 'books.search']);
+        
         $readBorrowBooksPermission = Permission::create(['name' => 'books.borrows.read']);
         $createBorrowBooksPermission = Permission::create(['name' => 'books.borrows.create']);
         $updateBorrowBooksPermission = Permission::create(['name' => 'books.borrows.update']);
         $deleteBorrowBooksPermission = Permission::create(['name' => 'books.borrows.delete']);
+
         $createFeedbacksPermission = Permission::create(['name' => 'feedbacks.create']);
         $readFeedbacksPermission = Permission::create(['name' => 'feedbacks.read']);
         $updateFeedbacksPermission = Permission::create(['name' => 'feedbacks.update']);
         $deleteFeedbacksPermission = Permission::create(['name' => 'feedbacks.delete']);
 
+        $createUsersPermission = Permission::create(['name' => 'users.create']);
+        $readUsersPermission = Permission::create(['name' => 'users.read']);
+        $updateUsersPermission = Permission::create(['name' => 'users.update']);
+        $deleteUsersPermission = Permission::create(['name' => 'users.delete']);
+
+        $searchBooksPermission = Permission::create(['name' => 'books.search']);
+        $sendNotificationsPermission = Permission::create(['name' => 'notifications.send']);
+
         $superadminPermissions = [
             $manageAccountsPermission,
             $manageRolesPermission,
             $managePermissionsPermission,
+
+            $createUsersPermission,
+            $deleteUsersPermission,
         ];
 
         $adminPermissions = [
@@ -83,6 +95,9 @@ class PermissionRoleSeeder extends Seeder
             $readFeedbacksPermission,
             $updateFeedbacksPermission,
             $deleteFeedbacksPermission,
+            
+            $readUsersPermission,
+            $updateUsersPermission,
 
             $readBooksPermission,
             $readBooktypesPermission,
