@@ -1,0 +1,181 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#book {
+  position: relative;
+  font-family: "Raleway", sans-serif;
+  background-color: transparent;
+}
+li {
+  list-style: none;
+}
+a {
+  color: #000;
+  text-decoration: none;
+}
+header {
+  position: relative;
+  top: 0;
+  padding: 0px 20px;
+  height: 150px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header-img {
+  width: 60vw;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+nav {
+  color: #220d10;
+}
+nav > ul {
+  font-size: large;
+  color: #220d10;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+nav > ul > li {
+  margin-left: 51px;
+  margin-right: 51px;
+  font-size: 16px;
+  line-height: 50px;
+}
+
+.book__main {
+  width: 100%;
+  height: 650px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.book__image {
+  margin-left: 64px;
+  width: 30%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.arrow__left {
+  margin-right: 20px;
+}
+.arrow__right {
+  margin-left: 20px;
+}
+
+.book__section {
+  width: 75%;
+  height: 100%;
+  padding: 90px 27px;
+  display: flex;
+  flex-direction: column;
+}
+.book__text {
+  height: 50%;
+}
+.book__function {
+  margin-top:40px;
+  height: 50%;
+  display: flex;
+  flex-direction: row;
+}
+
+.book__review {
+  width: 50%;
+}
+
+.book__button {
+  width: 50%;
+  position: relative;
+}
+
+.button {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.button__borrow, .button__review{
+  padding: 23px 46px;
+  background-color: #445466;
+  color: white;
+  border-radius: 30px;
+  font-size: 14px;
+}
+
+.button__review{
+  margin-left: 10px;
+}
+.book__review{
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.book__desc{
+  margin-top:20px;
+  height: 180px;
+  overflow: auto;
+}
+.book__star{
+  margin-bottom: 20px;
+}
+.book__comment{
+  margin: 100px;
+  display: flex;
+  flex-direction: column;
+  border: solid 1px #ccc;
+}
+.comment-title{
+  margin-bottom: 20px;
+}
+.comment__section{
+  display: flex;
+}
+.comment__section:not(:last-child){
+  margin-bottom: 8px;
+}
+.comment__info{
+  display: flex;
+}
+.comment__text{
+  display: flex;
+}
+.comment__date{
+  margin-left: 10px;
+}
+.comment__rating{
+  margin-left: 10px;
+}
+.avatar{
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 40px;
+}
+
+.column {
+  margin-top:20px;
+  font-weight: bold;
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
