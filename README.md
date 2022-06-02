@@ -17,3 +17,6 @@
         </li>
     </ul>
 </p>
+<p>
+    <strong>Note:</strong> you must config your own mail related setting in your <strong>.env</strong> to use any services relating to mailing.
+</p>
