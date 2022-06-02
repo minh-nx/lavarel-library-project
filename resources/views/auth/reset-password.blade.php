@@ -22,10 +22,12 @@
                     <div class="form-control">
                         <label for="username">New password</label>
                         <input type="password" id="password" name="password">
+                        <x-auth.input-error-message name="password"/>
                     </div>
                     <div class="form-control">
                         <label for="password_confirmation">New password confirmation</label>
                         <input type="password" id="password_confirmation" name="password_confirmation">
+                        <x-auth.input-error-message name="password_confirmation"/>
                     </div>
 
                     <div class="form-control text-align">
