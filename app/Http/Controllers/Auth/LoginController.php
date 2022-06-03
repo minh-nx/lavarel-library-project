@@ -11,7 +11,7 @@ class LoginController extends Controller
 {
     /**
      * Display login page.
-     * 
+     *
      * @return Renderable
      */
     public function index()
@@ -21,15 +21,15 @@ class LoginController extends Controller
 
     /**
      * Handle account login request
-     * 
+     *
      * @param App\Http\Requests\LoginRequest $request
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
-    public function login(LoginRequest $request) 
+    public function login(LoginRequest $request)
     {
         $credentials = $request->getCredentials();
-        
+
         if(Auth::attempt($credentials, $request->boolean('remember-me'))) {
 
             $request->session()->regenerate();
@@ -45,12 +45,12 @@ class LoginController extends Controller
 
     /**
      * Handle account logout request
-     * 
+     *
      * @param App\Http\Requests\LoginRequest $request
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
-    public function logout(Request $request) 
+    public function logout(Request $request)
     {
         Auth::logout();
 

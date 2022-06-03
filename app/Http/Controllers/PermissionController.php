@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Permission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,9 +15,11 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        $permissons = DB::table('permissions')->get();
-        return view('admin.permissions.permissions-index')
-            ->with('permissions', $permissons);
+//        $permissons = DB::table('permissions')->get();
+        $permissions = Permission::join('model_has_permissions', 'model_has_permissions.permission_id', '=', 'permissions.id')
+            ->join('users', 'users.id', '=', 'model_has_permissions.model_id')
+            ->get(['permissions.id', 'permissions.name', 'users.id', 'users.username']);
+        return view('admin.permissions.permissions-index', compact('permissions'));
     }
 
     /**
@@ -59,7 +60,7 @@ class PermissionController extends Controller
      */
     public function show(Permission $permission)
     {
-        return view('admin.permissions.permission-show', ['permission' => $permission]);
+        return view('admin.permissions.permissions-show', ['permission' => $permission]);
     }
 
     /**
@@ -70,7 +71,11 @@ class PermissionController extends Controller
      */
     public function edit(Permission $permission)
     {
-        //
+        $users = DB::table('users')->get()->pluck('username', 'id')->prepend('none');
+        $permissions = DB::table('permissions')->get()->pluck('name', 'id')->prepend('none');
+        return view('admin.permissions.permissions-edit')
+            ->with('users', $users)
+            ->with('permissions', $permissions);
     }
 
     /**

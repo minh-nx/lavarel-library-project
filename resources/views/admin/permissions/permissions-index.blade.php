@@ -14,11 +14,10 @@
     <table class="table">
         <thead>
         <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Guard Name</th>
-            <th>Created At</th>
-            <th>Updated At</th>
+            <th>Permission Id</th>
+            <th>Permission Name</th>
+            <th>User Id</th>
+            <th>User Name</th>
             <th class="Actions">Actions</th>
         </tr>
         </thead>
@@ -27,9 +26,8 @@
             <tr>
                 <td>{{ $permission->id }}</td>
                 <td>{{ $permission->name }}</td>
-                <td>{{ $permission->guard_name }}</td>
-                <td>{{ date('F d, Y', strtotime($permission->created_at)) }}</td>
-                <td>{{ date('F d, Y', strtotime($permission->updated_at)) }}</td>
+                <td>{{ $permission->id }}</td>
+                <td>{{ $permission->username }}</td>
                 <td class="actions">
                     <a
                         href="{{ route('permissions.show', ['permission' => $permission->id]) }}"

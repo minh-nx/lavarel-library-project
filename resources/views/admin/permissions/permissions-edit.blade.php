@@ -1,14 +1,15 @@
 @extends('layouts.default')
 
-@section('title', 'Create Permissions')
+@section('title', 'Edit Permissions')
 
 @section('heading')
-    <h1>This is permission create page</h1>
+    <h1>This is permission edit page</h1>
 @endsection
 
 @section('content')
     <div class="col">
-        <form action="{{ route('permissions.store') }}" method="POST">
+        <form action="{{ route('permissions.update', ['permission' => $permissions]) }}" method="POST">
+            @method('PUT')
             @include('admin.permissions.permissions-fields')
 
             <div class="form-group row">

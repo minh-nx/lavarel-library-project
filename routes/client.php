@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Routes in this file are for admin only.
+| Routes in this file are for client only.
 |
 */
 

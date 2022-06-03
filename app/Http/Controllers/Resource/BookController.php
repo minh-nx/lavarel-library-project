@@ -17,8 +17,8 @@ class BookController extends Controller
      */
     public function __construct()
     {
-        // Automatically invoked the policy registered for Book class each time a corresponding method is called
-        $this->authorizeResource(Book::class, 'book');
+//        // Automatically invoked the policy registered for Book class each time a corresponding method is called
+//        $this->authorizeResource(Book::class, 'book');
     }
 
     /**
@@ -54,26 +54,30 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        $slug = $request->input('title');
-        $id = DB::table('books')->insertGetId([
-            'title' => $request->input('title'),
-            'slug' => Str::slug($slug),
-            'author' => $request->input('author'),
-            'publication_year' => $request->input('pub_year'),
-            'cover_image' => 'http://localhost/storage/images/book-covers/sample-book-cover.png',
-            'description' => $request->input('description'),
-            'quantity' => $request->input('quantity'),
-            'deleted_at' => null,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        $booktypes = $request->input('booktype_ids');
+        $title = $request->input('title');
 
-        foreach ($booktypes as $booktype) {
-            DB::table('book_booktype')->insert([
-                'book_id' => $id,
-                'booktype_id' => $booktype,
+        if(Book::where('title', $title)->get() == null) {
+            $slug = $request->input('title');
+            $id = DB::table('books')->insertGetId([
+                'title' => $request->input('title'),
+                'slug' => Str::slug($slug),
+                'author' => $request->input('author'),
+                'publication_year' => $request->input('pub_year'),
+                'cover_image' => 'http://localhost/storage/images/book-covers/sample-book-cover.png',
+                'description' => $request->input('description'),
+                'quantity' => $request->input('quantity'),
+                'deleted_at' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
+            $booktypes = $request->input('booktype_ids');
+
+            foreach ($booktypes as $booktype) {
+                DB::table('book_booktype')->insert([
+                    'book_id' => $id,
+                    'booktype_id' => $booktype,
+                ]);
+            }
         }
 
         return redirect()->route('books.index');

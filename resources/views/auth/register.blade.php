@@ -57,6 +57,10 @@
                         Sign Me Up
                     </button>
                 </div>
+
+                <h4 class="margin-top text-align">
+                    Back to <a href="{{ route('login') }}"><span class="link-btn" style="color:blue">login</span></a>
+                </h4>
             </form>
           </div>
         </div>
