@@ -29,7 +29,10 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::with('booktypes')->orderBy('updated_at', 'DESC')->simplePaginate()->withQueryString();
+        $books = Book::with('booktypes')
+                     ->orderBy('updated_at', 'DESC')
+                     ->simplePaginate();
+
         return view('resources.books.books-index', ['books' => $books]);
     }
 

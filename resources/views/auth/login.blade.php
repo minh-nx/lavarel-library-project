@@ -1,4 +1,4 @@
-<x-layouts.default-layout title="Sign in" id="home">
+<x-layouts.default-layout title="Sign in">
     <x-slot:links>
         <link rel="stylesheet" href="{{ asset('css/auth-style.css') }}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -6,7 +6,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
     </x-slot>
 
-    <x-slot:content>
+    <x-slot:content id="home">
         {{-- Body zone: Edit every body part here --}}
         <div class="page-body page-background-img sign-in-page">
             <div class="middle-box sign-in-height">
@@ -17,7 +17,7 @@
 
                     @csrf
                     <div class="form-control">
-                        <label for="username">Username or Email</label>
+                        <label for="username">Username or email</label>
                         <input type="text" id="username" name="username" value="{{ old('username') }}">
                         <x-auth.input-error-message name="username"/>
                     </div>

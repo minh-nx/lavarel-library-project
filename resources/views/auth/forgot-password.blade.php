@@ -1,4 +1,4 @@
-<x-layouts.default-layout title="Forgot password" id="home">
+<x-layouts.default-layout title="Forgot password">
     <x-slot:links>
         <link rel="stylesheet" href="{{ asset('css/auth-style.css') }}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -6,7 +6,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
     </x-slot>
 
-    <x-slot:content>
+    <x-slot:content id="home">
         {{-- Body zone: Edit every body part here --}}
         <div class="page-body page-background-img height-600px">
             <div class="middle-box margin-auto height-forgot-password">
@@ -16,7 +16,7 @@
                     @csrf
                     <div class="form-control">
                         <label for="email">Email</label>
-                        <input type="text" id="email" name="email" value={{ old('email') }}>
+                        <input type="text" id="email" name="email" value="{{ old('email') }}">
                         <x-auth.input-error-message name="email"/>
                     </div>
                     <div>

@@ -1,0 +1,148 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#home {
+  position: relative;
+  font-family: "Raleway", sans-serif;
+  background-color: transparent;
+}
+li {
+  list-style: none;
+}
+a {
+  color: #000;
+  text-decoration: none;
+}
+header {
+  position: relative;
+  top: 0;
+  padding: 0px 20px;
+  height: 150px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header-img {
+  width: 60vw;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+nav {
+  color: #220d10;
+}
+nav > ul {
+  font-size: large;
+  color: #220d10;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+nav > ul > li {
+  margin-left: 39px;
+  margin-right: 39px;
+}
+.intro {
+  height: 600px;
+  width: 100%;
+  margin-left: 10px;
+}
+.intro > img {
+  width: 50%;
+  height: 474px;
+  position: relative;
+}
+.after {
+  position: absolute;
+  display: inline-block;
+  width: 47.2%;
+  height: 474px;
+  background-color: #d1b9ba;
+}
+
+.intro-text {
+  color: #431a20;
+  position: relative;
+  top: 128px;
+  left: 200px;
+  height: auto;
+  width: 300px;
+}
+.intro-text > h1 {
+  font-size: 48px;
+  line-height: 57.6px;
+}
+
+.intro-text > span {
+  line-height: 27.2px;
+  letter-spacing: 0.8px;
+}
+
+.member {
+  width: 100%;
+  height: 1865px;
+  padding: 0 20;
+}
+.member_inside{
+  width: 100%;
+  height: 100%;
+  background-color: #FDF9F8;
+  position: relative;
+}
+.member_title {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  font-size: 55px;
+  color: #431a20;
+  transform: translateX(-50%);
+}
+
+.member_box{
+  width: 60%;
+  height: 80%;
+  position: absolute;
+  top: 161px;
+  left: 50%;
+  background-color: white;
+  transform: translateX(-50%);
+  border: 1px solid black;
+}
+
+.member_left{
+  background-color: white;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+
+.member_right{
+  background-color: white;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  position: absolute;
+}
+
+.member_role {
+  color: #220d10;
+  font-size: large;
+  font-weight: 700;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.member_list{
+  position: absolute;
+  top: 90px;
+}

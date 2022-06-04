@@ -1,43 +1,50 @@
-@extends('layouts.default')
+<x-layouts.default-layout title="Edit feedback" selected="Book" layoutAttributes="id=manage">
+    <x-slot:links>
+        {{-- <link rel="stylesheet" href="{{ asset('css/style.css') }}"/> --}}
+        <link rel="stylesheet" href="{{ asset('css/Feedback-edit.css') }}">
+    </x-slot>
+  
+    <x-slot:content class="bordermother">
+        <div class="flex-column">
+            <div class="leftside">
+                <img class="image-cover" src="{{ $book->cover_image }}" alt="{{ $book->title }}'s cover">
+            </div>
 
-@section('title', 'Edit feedback')
+            <div class="rightside">
+                <h1 class="book-title">{{ $book->title }}</h1>
+                <h2 class="author">{{ $book->author }}</h2>
+                <h3 class="normalthing">Written in: {{ $book->publication_year }}</h3>
+                <h3 class="normalthing">Rating: {{ bookAvgRating($book) }}</h3>
+            </div>
+        </div>
 
-@section('heading')
-    <h1>This is feedback edit page</h1>
-@endsection
+        <form class="comment-form" action="{{ route('books.feedbacks.update', ['book' => $book, 'feedback' => $feedback]) }}" method="post">
+            @csrf
+            @method('put')
 
-@section('content')
-    <form action="{{ route('books.feedbacks.update', ['book' => $book, 'feedback' => $feedback]) }}" method="post">
-        @csrf
-        @method('put')
+            <label for="rating">Your Rating:</label>
+            <input type="number" id="rating" name="rating" min="1" max="10" value="{{ old('rating', $feedback->rating) }}" placeholder="1-10"
+                    required autocomplete="off" autofocus><br>
 
-        <label for="rating">Rating: </label>
-        <input type="number" id="rating" name="rating" value="{{ old('rating', $feedback->rating) }}" min="1" max="10" rows="3" autofocus>
-        @include('auth.temp.error-message', ['name' => 'rating'])
-        <br>
-
-        <label for="comment">Comment:</label><br>
-        <textarea id="comment" name="comment" rows="6" cols="60">{{ old('comment', $feedback->comment) }}</textarea>
-        @include('auth.temp.error-message', ['name' => 'comment'])
-        <br>
-    
-        <button type="button">
-            <a href="{{ route('books.show', ['book' => $book]) }}">
-                Back
-            </a>
-        </button>
-
-        <button type="button">
-            <a href="{{ route('books.feedbacks.edit', ['book' => $book, 'feedback' => $feedback]) }}">
-                Reset
-            </a>
-        </button>
-
-        <button type="submit">
-            Submit
-        </button>
-    </form>
-
-    <hr>
-    @include('auth.temp.session-message')
-@endsection
+            <label for="comment">Your Comment:</label><br>
+            <textarea id="comment" name="comment" placeholder="Write your comment here...">{{ old('comment', $feedback->comment) }}</textarea>
+            <div class="this-is-the-class-hold-class-button">
+                <div class="flex-column">
+                    <div class="leftside-button">
+                        <a href="{{ route('books.feedbacks.show', ['book' => $book, 'feedback' => $feedback]) }}">
+                            <button type="button" class="back-button">Back</button>
+                        </a>
+                    </div>
+                    <div class="middle-button">
+                        <button type="reset" class="submit-button">
+                            Reset
+                        </button>
+                    </div>
+                    <div class="rightside-button">
+                        <input type="submit" class="submit-button" value="Update">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </x-slot>
+</x-layouts.default-layout>

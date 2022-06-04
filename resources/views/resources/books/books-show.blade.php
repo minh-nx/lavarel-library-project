@@ -1,111 +1,77 @@
-<x-layouts.default-layout :title="$book->slug" id="book" selected="Book">
-  <x-slot:links>
-    <link rel="stylesheet" href="{{ asset('css/book.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link
-            href="https://fonts.googleapis.com/css2?family=Raleway&display=swap"
-            rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link
-          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway&display=swap"
-            rel="stylesheet"
-    />
-    <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-          crossorigin="anonymous"
-          referrerpolicy="no-referrer"
-    />
-  </x-slot>
+<x-layouts.default-layout :title="$book->title" selected="Book" layoutAttributes="id=manage">
+    <x-slot:links>
+        {{-- <link rel="stylesheet" href="{{ asset('css/style.css') }}"/> --}}
+        <link rel="stylesheet" href="{{ asset('css/Booksample.css') }}"/>
+    </x-slot>
+  
+    <x-slot:content class="flex-collum">
+        <div class="flex-row">
+            <div class="leftside-inside"></div>
 
-  <x-slot:content>
-    <div class="book__main">
-      <div class="book__image">
-        <i class="fa-solid fa-chevron-left arrow__left"></i>
-          <img src="{{ $book->cover_image }}" alt="{{ $book->title }}'s cover" />
-        <i class="fa-solid fa-chevron-right arrow__right"></i>
-      </div>
-
-        <div class="book__section">
-            <div class="book__text">
-                <div class="book__title"><h2>{{ $book->title }}</h2></div>
-                <div class="row">
-                    <div class="column">Author: {{ $book->author }}</div>
+            <div class="rightside-inside">
+                <img class="book-image" src="{{ $book->cover_image }}" alt="{{ $book->title }}'s cover">
+                <h1 class="booktitle"><b>{{ $book->title }}</b></h1>
+                <p class="bookauthor">{{ $book->author }}</p>
+                <p class="aboutthebook1">Written in: {{ $book->publication_year }}</p>
+                <p class="aboutthebook1">Type: {{ booktypesString($book->booktypes) }}</p>
+                <div class="flex-row">
+                    <div class="leftside-for-rating">
+                        <p class="aboutthebook1">Rating: {{ bookAvgRating($book) }}</p>
+                    </div>
+                    <div class="rightside-side-for-status">
+                        <p class="aboutthebook2">Status: {{ $book->status }}</p>
+                    </div>
                 </div>
-                <div class="row">
-                    <div class="column">Publication year: {{ $book->publication_year }}</div>
+                <p class="overview"><b>Overview</b></p>
+                <p class="overviewofoverview">
+                    {{ $book->description }}
+                </p>
+                <div class="this-is-the-class-hold-class-button">
+                    <div class="button">
+                        <a href="{{ route('users.books.borrows.create', ['book' => $book]) }}">
+                            <button class="button-design" {{-- @disabled($book->quantity == 0 && !$book->isUserBorrowing(auth()->user())) --}}>Borrow</button>
+                        </a>
+                        <a href="{{ route('books.feedbacks.create', ['book' => $book]) }}">
+                            <button class="button-design">Feedback</button>
+                        </a>
+                    </div>
                 </div>
-                <div class="row">
-                    <div class="column">Book types: {{ booktypesString($book->booktypes) }}</div>
+                <div class="comment-section">
+                    <h1 class="comment-heading">Comment Section:</h1>
+                    {{-- Comment here --}}
+                    @forelse($book->sortedFeedbacks as $feedback)
+                        <div class="flex-collum">
+                            <div class="flex-row">
+                                <div class="leftside-comment-name">
+                                    <p class="comment-person"><b>{{ $feedback->user->fullname }}</b></p>
+                                </div>
+                                
+                                <div class="rightside-comment-date">
+                                    <p class="comment-person"><b>Rating: {{ $feedback->rating }}</b></p>
+                                    <p class="comment-person"><i>{{ formatDate($feedback->updated_at, 'M j, Y') }}</i></p>
+                                </div>
+                            </div>
+                            <p class="finally-here-is-the-comment">
+                                {{ $feedback->comment }}
+                            </p>
+                        </div>
+                        @if($loop->iteration == 10)
+                            {{-- <br><a href="{{ route('books.feedbacks.index', ['book' => $book]) }}">More reviews</a><br> --}}
+                            @break
+                        @endif
+                    @empty
+                        <div class="flex-collum">
+                            <div class="flex-row">
+                                <div class="leftside-comment-name">
+                                    <p class="comment-person"><b>No comment yet</b></p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforelse
                 </div>
-                <div class="row">
-                    <div class="column">Rating: {{ bookAvgRating($book) }}</div>
-                    <div class="column">Status: {{ $book->status }}</div>
-                </div>
-
-            <div class="book__desc">
-              <p>
-                {{ $book->description }}
-              </p>
             </div>
-            
-        <div class="book__function">
-          <div class="book__review">
-          </div>
-            
-          <div class="book__button">
-            <div class="button">
-              <span class="button__borrow">
-                  <a href="{{ route('books.borrows.create', ['book' => $book]) }}">Borrow</a>
-              </span>
-              <span class="button__review">
-                  <a href="{{ route('books.feedbacks.create', ['book' => $book]) }}">Feedback</a>
-              </span>
-            </div>
-          </div>
+
+            <div class="leftside-inside"></div>
         </div>
-      </div>
-    </div>
-  </x-slot>
-
-  <div class="book__comment">
-    <div class="comment-title"><h4>Comments</h4></div>
-
-      @forelse($book->sortedFeedbacks as $feedback)
-        <div class="comment__section">
-          <div class="commment">
-            <div class="comment__info">
-              <div class="comment__name"><b>{{ $feedback->user->fullname }}</b></div>
-              <div class="comment__date">({{ formatDate($feedback->updated_at, 'M j, Y') }})</div>
-              <div class="comment__rating">Rate: {{ $feedback->rating }}</div>
-            </div>
-            <div class="comment__text">
-              {{ $feedback->comment }}
-            </div>
-          </div>
-        </div>
-        {{--
-        @if(!$loop->last)
-            <br>
-        @endif
-        --}}
-        @if($loop->iteration == 10)
-            {{-- <br><a href="{{ route('books.feedbacks.index', ['book' => $book]) }}">More reviews</a><br> --}}
-            @break
-        @endif
-      @empty
-        <div class="commment">
-          <div class="comment__text">
-            No comment yet
-          </div>
-        </div>
-      @endforelse
-    </div>
-  </div>
+    </x-slot>
 </x-layouts.default-layout>
-

@@ -12,7 +12,7 @@
             <a class="nav-link" href="{{ route('dashboard') }}" {!! $checkSelected('User') !!}>User</a>
         </li>
         <li>
-            <a class="nav-link" href="{{ route('books.search-page') }}" {!! $checkSelected('Book') !!}>Book</a>
+            <a class="nav-link" href="{{ route('books.intro') }}" {!! $checkSelected('Book') !!}>Book</a>
         </li>
         <li>
             <a class="nav-link" href="{{ route('about-us') }}" {!! $checkSelected('About') !!}>About</a>

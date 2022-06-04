@@ -45,11 +45,11 @@ class FeedbackController extends Controller
                             ->where('user_id', auth()->user()->id)
                             ->first();
 
-        if($feedback != null)
-        {
+        if($feedback != null) {
             return redirect()->route('books.feedbacks.show', ['book' => $book, 'feedback' => $feedback]);
         }
 
+        $book->loadAvg('feedbacks as average_rating', 'rating');
         return view('resources.feedbacks.feedbacks-create', ['book' => $book]);
     }
 
@@ -84,6 +84,7 @@ class FeedbackController extends Controller
      */
     public function show(Book $book, Feedback $feedback)
     {
+        $book->loadAvg('feedbacks as average_rating', 'rating');
         return view('resources.feedbacks.feedbacks-show', ['book' => $book, 'feedback' => $feedback]);
     }
 
@@ -96,6 +97,7 @@ class FeedbackController extends Controller
      */
     public function edit(Book $book, Feedback $feedback)
     {
+        $book->loadAvg('feedbacks as average_rating', 'rating');
         return view('resources.feedbacks.feedbacks-edit', ['book' => $book, 'feedback' => $feedback]);
     }
 

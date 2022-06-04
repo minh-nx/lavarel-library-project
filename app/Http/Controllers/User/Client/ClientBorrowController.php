@@ -19,10 +19,10 @@ class ClientBorrowController extends Controller
      * 
      * @return Renderable
      */
-    public function index()
+    public function index(User $user)
     {
         Gate::authorize('books.borrows.read');
-        $user = auth()->user();
+        //$user = auth()->user();
 
         $records = BorrowsHistory::with('book')->whereBelongsTo($user)
                                                ->orderBy('borrowed_date', 'DESC')
@@ -42,7 +42,7 @@ class ClientBorrowController extends Controller
         $this->authorize('createBorrow', $book);
 
         if($book->isUserBorrowing(auth()->user())) {
-            return redirect()->route('books.borrows.show', ['book' => $book]);
+            return redirect()->route('users.books.borrows.show', ['book' => $book]);
         }
 
         $user = User::find(auth()->user()->id);
@@ -133,7 +133,7 @@ class ClientBorrowController extends Controller
             'due_date' => $due_date,
         ]);
 
-        return view('resources.books.books-show', ['book' => $book])->with('success', 'The borrow request updated successfully');
+        return redirect()->route('books.show', ['book' => $book])->with('success', 'The borrow request updated successfully');
     }
 
     /**
@@ -165,6 +165,6 @@ class ClientBorrowController extends Controller
         $book->quantity += 1;
         $book->save();
 
-        return view('resources.books.books-show', ['book' => $book])->with('success', 'The book has been marked as returned');
+        return redirect()->route('books.show', ['book' => $book])->with('success', 'The book has been marked as returned');
     }
 }

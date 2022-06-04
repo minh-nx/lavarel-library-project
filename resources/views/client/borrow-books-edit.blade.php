@@ -1,52 +1,42 @@
-@extends('layouts.default')
+<x-layouts.default-layout title="Borrow book" selected="Book" layoutAttributes="id=manage">
+    <x-slot:links>
+        {{-- <link rel="stylesheet" href="{{ asset('css/style.css') }}"/> --}}
+        <link rel="stylesheet" href="{{ asset('css/Borrowbook.css') }}"/>
+    </x-slot>
+  
+    <x-slot:content class="flex-column">
+        <div class="leftside">
+            <img src="{{ $book->cover_image }}" alt="{{ $book->title }}'s cover" class="book-image">
+        </div>
+        <div class="rightside">
+            <form action="{{ route('users.books.borrows.update', ['book' => $book]) }}" method="post">
+                @csrf
+                @method('put')
 
-@section('title', 'Borrow Books')
+                <h1 class="heading">Borrow</h1>
+                <h2 class="book-title">{{ $book->title }}</h2>
+                <h3 class="author">{{ $book->author }}</h3>
+                <div class="setting-flex-in-form">
+                    <div class="flex-column">
+                        <div class="leftside">
+                            <label for="borrowed_date" class="lable-form">From:</label><br>
+                            <input type="date" id="borrowed_date" name="borrowed_date" value="{{ old('borrowed_date', $borrows->borrowed_date) }}" 
+                                    min="{{ $borrows->borrowed_date }}" required><br>
+                        </div>
 
-@section('heading')
-    <h1>This is borrow books edit page</h1>
-@endsection
-
-@section('content')
-    <form action="{{ route('books.borrows.update', ['book' => $book]) }}" method="post">
-        @csrf
-        @method('put')
-
-        <label>User: <b>{{ auth()->user()->fullname }}</b></label>
-        <br><br>
-
-        <label>Book: <b>{{ $book->title }}</b></label>
-        <br><br>
-        
-        <label for="borrowed_date">From: </label>
-        <input type="date" id="borrowed_date" name="borrowed_date" value="{{ old('borrowed_date', $borrows->borrowed_date) }}" 
-                min="{{ $borrows->borrowed_date }}">
-        @include('auth.temp.error-message', ['name' => 'borrowed_date'])
-        <br><br>
-
-        <label for="term">For: </label>
-        <input type="number" id="term" name="term" value="{{ old('term', $term) }}"
-                min="1" max="{{ \App\Models\Borrow::BORROW_MAX_DAY }}">
-        <label for="term"> day(s)</label>
-        @include('auth.temp.error-message', ['name' => 'term'])
-        <br><br>
-
-        <button type="button">
-            <a href="{{ route('books.borrows.show', ['book' => $book]) }}">
-                Back
-            </a>
-        </button>
-
-        <button type="button">
-            <a href="{{ route('books.borrows.edit', ['book' => $book]) }}">
-                Reset
-            </a>
-        </button>
-
-        <button type="submit">
-            Submit
-        </button>
-    </form>
-
-    <hr>
-    @include('auth.temp.session-message')
-@endsection
+                        <div class="rightside">
+                            <label for="term" class="lable-form">For:</label><br>
+                            <input type="number" id="term" name="term" value="{{ old('term', $term) }}" min="1" 
+                                    max="{{ \App\Models\Borrow::BORROW_MAX_DAY }}" placeholder="1-{{ \App\Models\Borrow::BORROW_MAX_DAY }}" 
+                                    required autocomplete="off">
+                            <label class="lable-form">day(s)</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="this-class-hold-borrow-button">
+                    <input type="submit" value="Edit">
+                </div>
+            </form>
+        </div>
+    </x-slot>
+  </x-layouts.default-layout>

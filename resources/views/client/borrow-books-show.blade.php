@@ -19,12 +19,12 @@
         <label>To: {{ $borrows->due_date }}</label>
         <br><br>
 
-    <form action="{{ route('books.borrows.destroy', ['book' => $book]) }}" method="post">
+    <form action="{{ route('users.books.borrows.destroy', ['book' => $book]) }}" method="post">
         @csrf
         @method('delete')
 
         <button>
-            <a href="{{ route('books.borrows.edit', ['book' => $book]) }}">
+            <a href="{{ route('users.books.borrows.edit', ['book' => $book]) }}">
                 Edit
             </a>
         </button>
@@ -36,7 +36,7 @@
     <br>
 
     <small>This is a temporary button and will be removed when deployed in production environment</small>
-    <form action="{{ route('books.borrows.return', ['book' => $book]) }}" method="post">
+    <form action="{{ route('users.books.borrows.return', ['book' => $book]) }}" method="post">
         @csrf
         @method('put')
 

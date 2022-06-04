@@ -15,7 +15,7 @@
     </a>
     <br><br>
 
-    <a href="{{ route('books.borrows.index') }}">
+    <a href="{{ route('users.borrows.index') }}">
         To borrow history
     </a>
 @endsection

@@ -1,0 +1,238 @@
+body
+{
+    overflow-x: auto;
+    background-color: antiquewhite;
+}
+
+.bordermother
+{
+    border-radius: 30px;
+    width: 80%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    margin-bottom: 20%;
+    border-color: aqua;
+    border-width: 3px;
+    border-style: double;
+    background-color: whitesmoke;
+}
+
+.flex-column
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.leftside
+{
+    flex: 40%;
+    margin-left: 10%;
+    padding-top: 10%;
+    border-bottom: blueviolet 1px solid;
+}
+
+.rightside
+{
+    flex: 40%;
+    margin-right: 10%;
+    padding-top: 10%;
+    border-bottom: blueviolet 1px solid;
+}
+
+.image-cover
+{
+    border-radius: 30px;
+    margin-left: 20%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    max-height: 300px;
+}
+
+.book-title
+{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 300%;
+    text-align: center;
+    font-style: italic;
+}
+
+.author
+{
+    text-align: center;
+    font-size: 200%;
+    font-family: serif;
+    font-style: oblique;
+}
+
+.normalthing
+{
+    text-align: left;
+    font-family: sans-serif;
+}
+
+.comment-form
+{
+    font-size: 150%;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 1%;
+}
+
+input[type=number]
+{
+    border-style: double;
+    background-color: whitesmoke;
+    padding: 1px;
+    margin-bottom: 1px;
+}
+
+textarea
+{
+    width: 100%;
+    height: 300px;
+}
+
+.this-is-the-class-hold-class-button
+{
+    padding-top: 2%;
+    padding-bottom: 5%;
+}
+
+.back-button
+{
+    text-align: center;
+    background-color: darkcyan;
+    color: whitesmoke;
+    border-style: none;
+    width: 25%;
+    height: 100%;
+}
+
+.back-button:hover
+{
+    background-color: darkgreen;
+}
+
+.submit-button
+{
+    text-align: center;
+    background-color: darkcyan;
+    color: whitesmoke;
+    border-style: none;
+    width: 25%;
+    height: 100%;
+}
+
+.submit-button:hover
+{
+    background-color: darkgreen;
+}
+
+.leftside-button
+{
+    flex: 40%;
+    text-align: left;
+}
+
+.rightside-button
+{
+    flex: 40%;
+    text-align: right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+li
+{
+    list-style: none;
+}
+a
+{
+    color: #000;
+    text-decoration: none;
+}
+header
+{
+    position: relative;
+    padding: 0 2rem;
+    height: 15rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+}
+.header-img
+{
+    width: 60vw;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+nav
+{
+    color: #220d10;
+}
+  nav > ul {
+    font-size: large;
+    color: #220d10;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+  
+nav > ul > li
+{
+    margin-left: 5rem;
+    margin-right: 5rem;
+    font-size: 1.6rem;
+    line-height: 5rem;
+}
+  
+nav > ul > li:last-child
+{
+    margin-right: 0;
+}
+
+#manage
+{
+    margin-top: 0px;
+    margin-bottom: auto;
+    position: relative;
+    font-family: "Raleway", sans-serif;
+    background-color: transparent;
+}
