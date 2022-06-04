@@ -26,8 +26,5 @@ class AdminSeeder extends Seeder
         $admin1->email_verified_at = now();
 
         $admin1->save();
-
-        $admin1->givePermissionTo('permissions.manage');
-        $admin1->assignRole(['admin', 'client']);
     }
 }

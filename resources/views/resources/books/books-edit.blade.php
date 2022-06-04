@@ -8,7 +8,8 @@
 
 @section('content')
     <div class="col">
-        <form action="{{ route('books.store') }}" method="POST">
+        <form action="{{ route('books.update', ['book' => $book]) }}" method="POST">
+            @method('PUT')
             @include('resources.books.books-fields')
 
             <div class="form-group row">

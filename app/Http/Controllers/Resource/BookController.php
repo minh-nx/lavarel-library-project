@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Resource;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Resources\BookRequest;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use Illuminate\Support\Facades\DB;
@@ -54,22 +55,34 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        $title = $request->input('title');
+//        $data = $request->validate();
+//
+//        $book = new Book();
+//        $book->title = $data['title'];
+//        $book->author = $data['author'];
+//        $book->publication_year = $data['publication_year'];
+//        $book->cover_image = $data['cover-image'];
+//        $book->description = $data['description'];
+//        $book->quantity = $data['quantity'];
+//
+//        $book->save();
 
-        if(Book::where('title', $title)->get() == null) {
-            $slug = $request->input('title');
+        $title = $request->input('title');
+        $book = DB::table('books')
+                ->where('title', $title)
+                ->get();
+
+        if($book != null) {
             $id = DB::table('books')->insertGetId([
-                'title' => $request->input('title'),
-                'slug' => Str::slug($slug),
+                'title' => $title,
+                'slug' => Str::slug($title),
                 'author' => $request->input('author'),
-                'publication_year' => $request->input('pub_year'),
+                'publication_year' => $request->input('publication_year'),
                 'cover_image' => 'http://localhost/storage/images/book-covers/sample-book-cover.png',
                 'description' => $request->input('description'),
                 'quantity' => $request->input('quantity'),
-                'deleted_at' => null,
-                'created_at' => now(),
-                'updated_at' => now(),
             ]);
+
             $booktypes = $request->input('booktype_ids');
 
             foreach ($booktypes as $booktype) {
@@ -78,9 +91,11 @@ class BookController extends Controller
                     'booktype_id' => $booktype,
                 ]);
             }
-        }
 
-        return redirect()->route('books.index');
+            return redirect()->route('books.index');
+        } else {
+            return redirect()->route('books.create');
+        }
     }
 
     /**
@@ -103,7 +118,12 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-
+        $booktypes = DB::table('booktypes')->get()->pluck('name', 'id')->prepend('none');
+        $bookBooktypes = DB::table('book_booktype')->where('book_id', $book->id)->get()->pluck('booktype_id');
+        return view('resources.books.books-edit')
+            ->with('book', $book)
+            ->with('booktypes', $booktypes)
+            ->with('bookBooktypes', $bookBooktypes);
     }
 
     /**

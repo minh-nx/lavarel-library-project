@@ -64,10 +64,10 @@
         {{-- Heading --}}
         @yield('heading')
 
-        @can('permissions.manage')
+{{--        @can('permissions.manage')--}}
             {{-- Button --}}
             @yield('buttons')
-        @endcan
+{{--        @endcan--}}
 
         <hr>
         {{-- Main content --}}

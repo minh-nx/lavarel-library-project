@@ -22,7 +22,7 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
-    </x-slot>
+    </x-slot:links>
 
     <x-slot:content>
         <div class="intro">
@@ -104,5 +104,5 @@
                 </div>
             </div>
         </div>
-    </x-slot>
+    </x-slot:content>
 </x-layouts.default-layout>
