@@ -43,7 +43,7 @@
     <label class="col-sm-2 col-form-label"for="cover-image">Cover Image</label>
     <div class="col-sm-10">
         @if(isset($book->cover_image))
-            <img class="form-control" width="300" height="300" alt="{{ $book->title ?? '' }}" src="{{ $book->cover_image ?? '' }}>"
+            <img class="form-control" width="300" height="300" alt="{{ $book->title ?? '' }}'s cover" src="{{ $book->cover_image ?? '' }}" style="max-width:200px; max-height:200px;">
         @endif
         <br>
         <input type="file" name="cover-image" class="form-control" id="cover-image">

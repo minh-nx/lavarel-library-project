@@ -35,7 +35,7 @@ class BookFactory extends Factory
             'slug' => $slug,
             'author' => $this->truncateNameTitle($faker_vn->name()),
             'publication_year' => $faker_vn->year(),
-            'cover_image' => url('storage/images/book-covers/'. 'sample-book-cover.png'),
+            'cover_image' => url('assets/img/'. 'book.png'),
             'description' => $faker_vn->paragraph(3),
             'quantity' => $faker_vn->numberBetween(1, 10),
         ];

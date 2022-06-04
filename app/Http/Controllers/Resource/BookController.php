@@ -91,7 +91,6 @@ class BookController extends Controller
                     'booktype_id' => $booktype,
                 ]);
             }
-
             return redirect()->route('books.index');
         } else {
             return redirect()->route('books.create');
@@ -135,7 +134,28 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
+        $title = $request->input('title');
+        DB::table('books')->where('id', $book->id)->update([
+            'title' => $title,
+            'slug' => Str::slug($title),
+            'author' => $request->input('author'),
+            'publication_year' => $request->input('publication_year'),
+            'cover_image' => 'http://localhost:8080/assets/img/book.png',
+            'description' => $request->input('description'),
+            'quantity' => $request->input('quantity'),
+        ]);
 
+        $booktypes = $request->input('booktype_ids');
+        DB::table('book_booktype')->where('book_id', $book->id)->delete();
+
+        foreach ($booktypes as $booktype) {
+            DB::table('book_booktype')->insert([
+                'book_id' => $book->id,
+                'booktype_id' => $booktype,
+            ]);
+        }
+
+        return redirect()->route('books.index');
     }
 
     /**
@@ -146,6 +166,9 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
+        DB::table('book_booktype')->where('book_id', $book->id)->delete();
+        DB::table('books')->where('id', $book->id)->delete();
 
+        return redirect()->route('books.index');
     }
 }
