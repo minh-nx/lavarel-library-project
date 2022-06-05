@@ -20,8 +20,8 @@
     </a>
     <br><br>
 
-    <a href="{{ route('books.index') }}">
-        Track Borrowed Books
+    <a href="{{ route('admin.books.borrows.index') }}">
+        Borrowing History
     </a>
     <br><br>
 

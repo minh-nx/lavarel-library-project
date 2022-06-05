@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Book extends Model
 {
-    use HasFactory, Filterable, SoftDeletes;
+    use HasFactory, Filterable;
 
     /**
      * The table associated with the model.
