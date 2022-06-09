@@ -24,4 +24,22 @@ class HomeController extends Controller
 
         return view('user.home', ['books' => $books]);
     }
+
+    /**
+     * Display intro page to books index
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function booksIntro()
+    {
+        $offset = 0;
+        $limit = 30;
+        $books = Book::orderBy('updated_at', 'DESC')
+                     ->offset($offset)
+                     ->limit($limit)
+                     ->get()
+                     ->random(3);
+
+        return view('user.books-intro', ['books' => $books]);
+    }
 }

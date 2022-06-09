@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <form action="{{ route('books.borrows.store', ['book' => $book]) }}" method="POST">
+    <form action="{{ route('users.books.borrows.store', ['book' => $book]) }}" method="POST">
         @csrf
 
         <label>User: <b>{{ auth()->user()->fullname }}</b></label>

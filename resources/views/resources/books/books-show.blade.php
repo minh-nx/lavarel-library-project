@@ -26,9 +26,7 @@
   <x-slot:content>
     <div class="book__main">
       <div class="book__image">
-        <i class="fa-solid fa-chevron-left arrow__left"></i>
           <img src="{{ $book->cover_image }}" alt="{{ $book->title }}'s cover" />
-        <i class="fa-solid fa-chevron-right arrow__right"></i>
       </div>
 
         <div class="book__section">
@@ -60,11 +58,15 @@
             
           <div class="book__button">
             <div class="button">
-              <span class="button__borrow">
-                  <a href="{{ route('books.borrows.create', ['book' => $book]) }}">Borrow</a>
+              <span>
+                  <a href="{{ route('users.books.borrows.create', ['book' => $book]) }}" class="button__borrow">
+                    Borrow
+                  </a>
               </span>
-              <span class="button__review">
-                  <a href="{{ route('books.feedbacks.create', ['book' => $book]) }}">Feedback</a>
+              <span>
+                  <a href="{{ route('books.feedbacks.create', ['book' => $book]) }}" class="button__review">
+                    Feedback
+                  </a>
               </span>
             </div>
           </div>

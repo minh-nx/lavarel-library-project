@@ -45,8 +45,7 @@ class FeedbackController extends Controller
                             ->where('user_id', auth()->user()->id)
                             ->first();
 
-        if($feedback != null)
-        {
+        if($feedback != null) {
             return redirect()->route('books.feedbacks.show', ['book' => $book, 'feedback' => $feedback]);
         }
 

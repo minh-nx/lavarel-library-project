@@ -1,0 +1,42 @@
+body {
+  background-color: white;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+.borrow {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.borrowing__title {
+  text-align: center;
+  font-family: cormorantgaramond;
+  margin-bottom: 70px;
+}
+
+.borrowing__table {
+  display: inline-block;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 170px;
+  height: 300px;
+  width: 800px;
+}
+
+.borrow__table {
+  height: 300px;
+  width: 800px;
+  text-align: center;
+}
+
+.borrowing__table--title {
+  background-color: black;
+  color: white;
+  font-family: helvetica;
+
+}

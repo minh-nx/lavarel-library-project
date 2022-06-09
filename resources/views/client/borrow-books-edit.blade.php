@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <form action="{{ route('books.borrows.update', ['book' => $book]) }}" method="post">
+    <form action="{{ route('users.books.borrows.update', ['book' => $book]) }}" method="post">
         @csrf
         @method('put')
 
@@ -31,13 +31,13 @@
         <br><br>
 
         <button type="button">
-            <a href="{{ route('books.borrows.show', ['book' => $book]) }}">
+            <a href="{{ route('users.books.borrows.show', ['book' => $book]) }}">
                 Back
             </a>
         </button>
 
         <button type="button">
-            <a href="{{ route('books.borrows.edit', ['book' => $book]) }}">
+            <a href="{{ route('users.books.borrows.edit', ['book' => $book]) }}">
                 Reset
             </a>
         </button>

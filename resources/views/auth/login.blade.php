@@ -17,7 +17,7 @@
 
                     @csrf
                     <div class="form-control">
-                        <label for="username">Username or Email</label>
+                        <label for="username">Username or email</label>
                         <input type="text" id="username" name="username" value="{{ old('username') }}">
                         <x-auth.input-error-message name="username"/>
                     </div>

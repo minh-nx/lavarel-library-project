@@ -49,6 +49,6 @@ class SearchBookController extends Controller
         */
 
         $booktypes = Booktype::all();
-        return view('user.search-books-page', ['books' => $books, 'booktypes' => $booktypes]);
+        return view('client.search-books-page', ['books' => $books, 'booktypes' => $booktypes]);
     }
 }

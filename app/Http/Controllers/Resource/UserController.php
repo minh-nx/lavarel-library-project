@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Resource;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Http\Requests\Client\ProfileUpdateRequest;
 
 class UserController extends Controller
 {
@@ -58,7 +59,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('resources.users.users-show', ['user' => $user]);
     }
 
     /**
@@ -69,19 +70,26 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('resources.users.users-edit', ['user' => $user]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Client\ProfileUpdateRequest  $request
      * @param  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(ProfileUpdateRequest $request, User $user)
     {
-        //
+        $data = $request->validated();
+
+        $user->firstname = $data['firstname'];
+        $user->lastname = $data['lastname'];
+
+        $user->save();
+
+        return redirect()->route('users.show', ['user' => $user]);
     }
 
     /**

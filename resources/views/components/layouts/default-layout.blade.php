@@ -11,7 +11,6 @@
         {{-- Bootstrap's link 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"/>
         --}}
-        
 
         {{-- Additional links --}}
         @isset($links)
@@ -20,20 +19,21 @@
     </head>
 
     <body>
-        <div {{ $attributes }}>
-            {{-- Header zone --}}
+        {{-- Header zone --}}
+        <div {{ $layoutAttributes ?? $attributes }}>
             <x-layouts.header :selected="$selected" id="header"/>
-
-            {{-- Main content --}}
-            <main>
-                {{ $content }}
-            </main>
         </div>
 
+        {{-- Main content --}}
+        <div {{ $attributes }}>
+            {{ $content }}
+        </div>
+
+        {{-- Additional content --}}
         {{ $slot }}
 
         {{-- Footer zone --}}
-        <div {{ $attributes }}>
+        <div {{ $layoutAttributes ?? $attributes }}>
             <x-layouts.footer id="footer"/>
         </div>
 

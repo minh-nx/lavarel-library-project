@@ -59,7 +59,7 @@
                 </div>
 
                 <h4 class="margin-top text-align">
-                    Back to <a href="{{ route('login') }}"><span class="link-btn" style="color:blue">login</span></a>
+                    Already have an account? <a href="{{ route('login') }}"><span class="link-btn" style="color:blue">Sign in here</span></a>
                 </h4>
             </form>
           </div>

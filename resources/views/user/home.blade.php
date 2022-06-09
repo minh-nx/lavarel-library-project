@@ -1,6 +1,5 @@
 <x-layouts.default-layout title="Home" id="home" selected="Home">
     <x-slot:links>
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
         <link rel="stylesheet" href="{{ asset('css/main.css') }}"/>
         
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -52,11 +51,11 @@
                 </div>
               </div>
             </div>
-            <div class="arrow">
-                <i class="fa fa-arrow-down"></i>
+            <div>
+                <a href="#book-zone" class="arrow"><i class="fa fa-arrow-down"></i></a>
             </div>
           </div>
-          <div class="book">
+          <div class="book" id="book-zone">
             <div class="book__header">
                 <div class="book__title">
                     <h3>Books</h3>
