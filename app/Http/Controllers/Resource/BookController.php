@@ -171,4 +171,16 @@ class BookController extends Controller
 
         return redirect()->route('books.index');
     }
+
+    /**
+     * Show the confirm page.
+     *
+     * @param  \App\Models\Book $book
+     * @return \Illuminate\Http\Response
+     */
+    public function confirm(Book $book)
+    {
+        return view('resources.books.books-confirm')
+            ->with('id', $book->id);
+    }
 }

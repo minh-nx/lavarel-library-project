@@ -36,12 +36,7 @@
                         <td style="text-align: right;"><a href="{{ route('books.edit', ['book' => $book]) }}"><i class="fa-solid fa-pen-to-square"></i> Edit</a></td>
 {{--                    @endcan--}}
 {{--                    @can('books.delete')--}}
-                        <td style="text-align: left;">
-                            <form action="{{ route('books.destroy', ['book' => $book]) }}" method="POST">
-                                @method('DELETE')
-                                @csrf
-                                <button type="submit" onclick="return confirm('This action cannot be undone. Are you sure?')" class="btn btn-link" title="Delete" value="DELETE"><i class="fa fa-trash"></i> Delete</button>
-                            </form>
+                    <td style="text-align: left;"><a href="{{ route('books.confirm', ['book' => $book]) }}"><i class="fa fa-trash"></i> Delete</a></td>
 {{--                    @endcan--}}
                 </tr>
             </tbody>
