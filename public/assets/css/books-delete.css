@@ -52,7 +52,7 @@ input[type=submit]
     cursor: pointer;
     margin-bottom: auto;
 }
-  
+
 input[type=submit]:hover
 {
     background-color: #45a049;
@@ -90,14 +90,14 @@ nav
 {
     color: #220d10;
 }
-  nav > ul {
+nav > ul {
     font-size: large;
     color: #220d10;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
-  
+
 nav > ul > li
 {
     margin-left: 5rem;
@@ -105,7 +105,7 @@ nav > ul > li
     font-size: 1.6rem;
     line-height: 5rem;
 }
-  
+
 nav > ul > li:last-child
 {
     margin-right: 0;

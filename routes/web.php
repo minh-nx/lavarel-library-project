@@ -39,6 +39,7 @@ Route::group(['middleware' => ['role_or_permission:superadmin|account.manage']],
 Route::prefix('test')->group( function() {
     Route::get('auto-login', [\App\Http\Controllers\Auth\LoginController::class, 'autoLogin'])->name('auto-login');
     Route::resource('books', \App\Http\Controllers\Resource\BookController::class);
+    Route::get('/books-delete-confirm/{book}', [\App\Http\Controllers\Resource\BookController::class, 'confirm'])->name('books.confirm');
     Route::resource('permissions', \App\Http\Controllers\PermissionController::class);
     Route::get('/search-books', [\App\Http\Controllers\User\SearchBookController::class, 'index'])->name('books.search-page');
 });

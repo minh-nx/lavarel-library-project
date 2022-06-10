@@ -8,16 +8,18 @@ class DefaultLayout extends Component
 {
     public $title;
     public $selected;
+    public $layoutAttributes;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($title, $selected = '')
+    public function __construct($title, $selected = '', $layoutAttributes = null)
     {
         $this->title = $title;
         $this->selected = $selected;
+        $this->layoutAttributes = $layoutAttributes;
     }
 
     /**

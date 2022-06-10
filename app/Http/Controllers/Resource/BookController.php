@@ -119,6 +119,7 @@ class BookController extends Controller
     {
         $booktypes = DB::table('booktypes')->get()->pluck('name', 'id')->prepend('none');
         $bookBooktypes = DB::table('book_booktype')->where('book_id', $book->id)->get()->pluck('booktype_id');
+//        return view('resources.books.books-edit')
         return view('resources.books.books-edit')
             ->with('book', $book)
             ->with('booktypes', $booktypes)
@@ -180,7 +181,7 @@ class BookController extends Controller
      */
     public function confirm(Book $book)
     {
-        return view('resources.books.books-confirm')
-            ->with('id', $book->id);
+        return view('resources.books.books-delete')
+            ->with('book', $book);
     }
 }

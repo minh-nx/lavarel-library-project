@@ -1,0 +1,231 @@
+body
+{
+    overflow-x: auto;
+    background: no-repeat fixed url("https://static.wixstatic.com/media/11062b_37dedb80d2a040feba51dac3f2353f53~mv2.jpg/v1/fill/w_1899,h_929,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/11062b_37dedb80d2a040feba51dac3f2353f53~mv2.jpg");
+    width: 100%;
+    height: auto;
+}
+
+small
+{
+    font-style: italic;
+    font-family: sans-serif;
+    font-size: small;
+    color: red;
+    visibility: hidden;
+}
+
+#bordermother
+{
+    width: auto;
+    height: auto;
+    background-color: #F3F6F4;
+    border-radius: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+}
+
+h1
+{
+    text-align: center;
+    font-family: sans-serif;
+    color: #3F7652;
+    size: 40px;
+}
+
+input[type=text]
+{
+    width: 190px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #E1E7E3;
+}
+
+input[type=number]
+{
+    width: 190px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #E1E7E3;
+}
+
+input[type=file]
+{
+    width: 90%;
+    height: 50px;
+    padding: 1px 2px;
+    border-radius: 5px;
+    background-color: #E1E7E3;
+}
+
+.booktype
+{
+    font-family: sans-serif;
+    color: #3F7652;
+}
+
+textarea
+{
+    height: 200px;
+    width: 90%;
+    background-color: #E1E7E3;
+}
+
+input[type=submit]
+{
+    width: 30%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover
+{
+    background-color: #45a049;
+}
+
+input[type=reset]
+{
+    width: 30%;
+    background-color: lightyellow;
+    color: purple;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type=reset]:hover
+{
+    background-color: lightpink;
+}
+
+.delete-book
+{
+    text-align: center;
+    width: 30%;
+    background-color: lightcoral;
+    color: whitesmoke;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.delete-book:hover
+{
+    background-color: darkred;
+}
+
+.flex-row
+{
+    padding-left: 10px;
+    display: flex;
+    flex-direction: row;
+    font-family: sans-serif;
+    color: #3F7652;
+    text-align: left;
+    size: 16px;
+}
+
+.leftside
+{
+    flex: 50%;
+    padding: 10px;
+}
+
+.rightside
+{
+    flex: 50%;
+    padding: 10px;
+}
+
+.testalign
+{
+    font-family: sans-serif;
+    text-align: center;
+    color: #3F7652;
+    size: 16px;
+}
+
+.container {
+    font-family: sans-serif;
+    border:2px solid #ccc;
+    overflow-y: scroll;
+    width: 90%;
+    height: 100px;
+    border-radius: 5px;
+    background-color: #E1E7E3
+}
+
+li
+{
+    list-style: none;
+}
+a
+{
+    color: #000;
+    text-decoration: none;
+}
+header
+{
+    position: relative;
+    padding: 0 2rem;
+    height: 15rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+}
+.header-img
+{
+    width: 60vw;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+nav
+{
+    color: #220d10;
+}
+  nav > ul {
+    font-size: large;
+    color: #220d10;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+nav > ul > li
+{
+    margin-left: 5rem;
+    margin-right: 5rem;
+    font-size: 1.6rem;
+    line-height: 5rem;
+}
+
+nav > ul > li:last-child
+{
+    margin-right: 0;
+}
+
+#manage
+{
+    margin-top: 0px;
+    margin-bottom: auto;
+    position: relative;
+    font-family: "Raleway", sans-serif;
+    background-color: transparent;
+}

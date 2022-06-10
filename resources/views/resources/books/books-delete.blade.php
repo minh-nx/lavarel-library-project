@@ -1,4 +1,4 @@
-<x-layouts.default-layout title="About us" id="bordermother" selected="About">
+<x-layouts.default-layout title="Confirm Delete" id="bordermother" selected="Admin">
     <x-slot:links>
         <link rel="stylesheet" href="{{ asset('css/books-delete.css') }}" />
         <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
@@ -13,7 +13,8 @@
                 <br>
                 <div class="warning">
                     <b>
-                        Are you sure about this action?
+                        This action cannot be undone.<br>
+                        Are you sure about this?
                     </b>
                 </div>
                 <br>
