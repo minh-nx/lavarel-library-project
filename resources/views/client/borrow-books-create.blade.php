@@ -1,44 +1,41 @@
-@extends('layouts.default')
+<x-layouts.default-layout title="Borrow book" selected="Book" layoutAttributes="id=manage" class="flex-column">
+    <x-slot:links>
+        {{-- <link rel="stylesheet" href="{{ asset('css/style.css') }}"/> --}}
+        <link rel="stylesheet" href="{{ asset('css/Borrowbook.css') }}"/>
+    </x-slot>
+  
+    <x-slot:content>
+        <div class="leftside">
+            <img src="{{ $book->cover_image }}" alt="{{ $book->title }}'s cover" class="book-image">
+        </div>
+        <div class="rightside">
+            <form action="{{ route('users.books.borrows.store', ['book' => $book]) }}" method="post">
+                @csrf
 
-@section('title', 'Borrow Books')
+                <h1 class="heading">Borrow</h1>
+                <h2 class="book-title">{{ $book->title }}</h2>
+                <h3 class="author">{{ $book->author }}</h3>
+                <div class="setting-flex-in-form">
+                    <div class="flex-column">
+                        <div class="leftside">
+                            <label for="borrowed_date" class="lable-form">From:</label><br>
+                            <input type="date" id="borrowed_date" name="borrowed_date" value="{{ old('borrowed_date', formatDate(now())) }}" 
+                                    min="{{ formatDate(now()) }}" required><br>
+                        </div>
 
-@section('heading')
-    <h1>This is borrow book create page</h1>
-@endsection
-
-@section('content')
-    <form action="{{ route('users.books.borrows.store', ['book' => $book]) }}" method="POST">
-        @csrf
-
-        <label>User: <b>{{ auth()->user()->fullname }}</b></label>
-        <br><br>
-
-        <label>Book: <b>{{ $book->title }}</b></label>
-        <br><br>
-        
-        <label for="borrowed_date">From: </label>
-        <input type="date" id="borrowed_date" name="borrowed_date" value="{{ old('borrowed_date', now()->format('Y-m-d')) }}" 
-                min="{{ now()->format('Y-m-d') }}">
-        @include('auth.temp.error-message', ['name' => 'borrowed_date'])
-        <br><br>
-
-        <label for="term">For: </label>
-        <input type="number" id="term" name="term" value="{{ old('term', 1) }}"
-                min="1" max="{{ \App\Models\Borrow::BORROW_MAX_DAY }}">
-        <label for="term"> day(s)</label>
-        @include('auth.temp.error-message', ['name' => 'term'])
-        <br><br>
-
-        <button type="submit">
-            Submit
-        </button>
-    </form>
-    <hr>
-
-    <a href="{{ route('books.show', ['book' => $book]) }}">
-        Back
-    </a>
-
-    <hr>
-    @include('auth.temp.session-message')
-@endsection
+                        <div class="rightside">
+                            <label for="term" class="lable-form">For:</label><br>
+                            <input type="number" id="term" name="term" value="{{ old('term') }}" min="1" 
+                                    max="{{ \App\Models\Borrow::BORROW_MAX_DAY }}" placeholder="1-{{ \App\Models\Borrow::BORROW_MAX_DAY }}" 
+                                    required autocomplete="off">
+                            <label class="lable-form">day(s)</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="this-class-hold-borrow-button">
+                    <input type="submit" value="Borrow">
+                </div>
+            </form>
+        </div>
+    </x-slot>
+  </x-layouts.default-layout>

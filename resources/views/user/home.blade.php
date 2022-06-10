@@ -1,5 +1,6 @@
 <x-layouts.default-layout title="Home" id="home" selected="Home">
     <x-slot:links>
+        {{-- <link rel="stylesheet" href="{{ asset('css/style.css') }}" /> --}}
         <link rel="stylesheet" href="{{ asset('css/main.css') }}"/>
         
         <link rel="preconnect" href="https://fonts.googleapis.com" />

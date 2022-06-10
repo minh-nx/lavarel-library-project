@@ -39,7 +39,9 @@
                     @foreach ($books as $book)
                         <div class="book__slot">
                             <div class="book__img">
-                                <img class="img__book" src="{{ $book->cover_image }}" alt="{{ $book->title }}'s cover" />
+                                <a href="{{ route('books.show', ['book' => $book]) }}">
+                                    <img class="img__book" src="{{ $book->cover_image }}" alt="{{ $book->title }}'s cover" />
+                                </a>
                             </div>
                             <div>
                                 <a href="{{ route('users.books.borrows.create', ['book' => $book]) }}">

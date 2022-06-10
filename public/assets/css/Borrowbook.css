@@ -1,0 +1,185 @@
+body
+{
+    overflow-x: auto;
+}
+
+.flex-column
+{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10%;
+}
+
+.leftside
+{
+    flex: 40%;
+    margin-left: 10%;
+}
+
+.rightside
+{
+    flex: 40%;
+    background-color: #0B2F5B;
+    margin-right: 10%;
+}
+
+.book-image
+{
+    max-width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.heading
+{
+    font-size: 40px;
+    font-family: cursive;
+    color: whitesmoke;
+    text-align: center;
+}
+
+.book-title
+{
+    text-align: left;
+    color: whitesmoke;
+    font-size: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    font-style: italic;
+    padding-left: 10%;
+}
+
+.author
+{
+    text-align: left;
+    color: whitesmoke;
+    font-size: 20px;
+    font-family: serif;
+    padding-left: 10%;
+}
+
+.lable-form
+{
+    color: whitesmoke;
+    font-size: 15px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.setting-flex-in-form
+{
+    margin-left: 10%;
+    margin-top: 5%;
+}
+
+input[type=date]
+{
+    background-color: #0B2F5B;
+    color: whitesmoke;
+    border: whitesmoke solid;
+    width: 70%;
+    height: 120%;
+    cursor: pointer;
+}
+
+input[type=number]
+{
+    background-color: #0B2F5B;
+    color: whitesmoke;
+    border: whitesmoke solid;
+    width: 70%;
+    height: 120%;
+    cursor: pointer;
+}
+
+.this-class-hold-borrow-button
+{
+    text-align: center;
+}
+
+input[type=submit]
+{
+    width: 200px;
+    height: 60px;
+    background-color: whitesmoke;
+    color:#0B2F5B;
+    border: solid;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    margin-left: auto;
+    margin-right: auto;
+}
+  
+input[type=submit]:hover
+{
+    background-color:darkblue;
+    color: whitesmoke;
+}
+
+
+
+
+
+
+
+
+
+a
+{
+    color: #000;
+    text-decoration: none;
+}
+header
+{
+    position: relative;
+    padding: 0 2rem;
+    height: 15rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+}
+.header-img
+{
+    width: 60vw;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+nav
+{
+    color: #220d10;
+}
+  nav > ul {
+    font-size: large;
+    color: #220d10;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+  
+nav > ul > li
+{
+    margin-left: 5rem;
+    margin-right: 5rem;
+    font-size: 1.6rem;
+    line-height: 5rem;
+}
+  
+nav > ul > li:last-child
+{
+    margin-right: 0;
+}
+
+#manage
+{
+    margin-top: 0px;
+    margin-bottom: auto;
+    position: relative;
+    font-family: "Raleway", sans-serif;
+    background-color: transparent;
+}
