@@ -106,9 +106,9 @@ class Book extends Model
         foreach($ids as $id) {
             $query->whereExists(function ($query) use($id){
                 $query->select(DB::raw(1))
-                      ->from('book_booktype')
-                      ->whereColumn('book_booktype.book_id', 'books.id')
-                      ->where('book_booktype.booktype_id', $id);
+                    ->from('book_booktype')
+                    ->whereColumn('book_booktype.book_id', 'books.id')
+                    ->where('book_booktype.booktype_id', $id);
             });
         }
 
@@ -120,7 +120,7 @@ class Book extends Model
      *
      * @return $query
      */
-    public function scopeUnavailable($query) 
+    public function scopeUnavailable($query)
     {
         return $query->where('quantity', 0);
     }
@@ -130,7 +130,7 @@ class Book extends Model
      *
      * @return $query
      */
-    public function scopeAvailable($query) 
+    public function scopeAvailable($query)
     {
         return $query->where('quantity', '>', 0);
     }
@@ -190,9 +190,9 @@ class Book extends Model
     public function users()
     {
         return $this->belongsToMany(User::class, 'borrows')
-                    ->using(Borrow::class)
-                    ->as('borrows')
-                    ->withPivot(['borrowed_date', 'due_date', 'returned_date']);
+            ->using(Borrow::class)
+            ->as('borrows')
+            ->withPivot(['borrowed_date', 'due_date', 'returned_date']);
     }
 
     /**
@@ -209,8 +209,8 @@ class Book extends Model
     public function returnedUsers()
     {
         return User::whereIn('id', BorrowsHistory::select('user_id')
-                                                 ->where('book_id', $this->getAttribute('id'))
-                            );
+            ->where('book_id', $this->getAttribute('id'))
+        );
     }
 
     /**
@@ -241,7 +241,7 @@ class Book extends Model
      * Helper function to determined if a given user is borrowing
      *
      * @param int|User $user
-     * 
+     *
      * @return bool
      */
     public function isUserBorrowing($user) : bool

@@ -27,7 +27,7 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::resource('users', \App\Http\Controllers\Resource\UserController::class);
     Route::resource('books', \App\Http\Controllers\Resource\BookController::class);
     Route::resource('books.feedbacks', \App\Http\Controllers\Resource\FeedbackController::class);
-    
+
     Route::get('/search-books', [\App\Http\Controllers\User\SearchBookController::class, 'index'])->name('books.search-page');
     Route::get('/search-books/query', [\App\Http\Controllers\User\SearchBookController::class, 'search'])->name('books.search');
 });
@@ -35,7 +35,6 @@ Route::middleware(['auth', 'verified'])->group(function() {
 Route::group(['middleware' => ['role_or_permission:superadmin|account.manage']], function () {
     Route::resource('permissions', \App\Http\Controllers\PermissionController::class);
 });
-
 
 //Only for testing purposes
 Route::prefix('test')->group( function() {

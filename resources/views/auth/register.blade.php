@@ -10,10 +10,10 @@
     {{-- Body zone: Edit every body part here --}}
     <div class="page-body page-background-img">
         {{-- <img class= "background-img" src="./img/signup-background-img.jpg" alt="background-image"> --}}
-        <div class = "middle-box"> 
+        <div class = "middle-box">
             <form action="{{ route('register') }}" method="post">
                 <span class = "sign-up">
-                    <h1>Sign Up</h1> 
+                    <h1>Sign Up</h1>
                 </span>
 
                 @csrf
@@ -44,7 +44,7 @@
                 </div>
                 <div class="form-control">
                     <label for="password">Password (at least 6 characters)</label>
-                    <input type="password" id="password" name="password"> 
+                    <input type="password" id="password" name="password">
                     <x-auth.input-error-message name="password"/>
                 </div>
                 <div class="form-control">

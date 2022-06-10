@@ -16,7 +16,7 @@ class ClientBorrowController extends Controller
 {
     /**
      * Show all borrowing books of the current user
-     * 
+     *
      * @return Renderable
      */
     public function index(User $user)
@@ -25,15 +25,15 @@ class ClientBorrowController extends Controller
         //$user = auth()->user();
 
         $records = BorrowsHistory::with('book')->whereBelongsTo($user)
-                                               ->orderBy('borrowed_date', 'DESC')
-                                               ->paginate();
+            ->orderBy('borrowed_date', 'DESC')
+            ->paginate();
 
         return view('client.borrow-books-index', ['records' => $records]);
     }
 
     /**
      * Display borrow book form.
-     * 
+     *
      * @param \App\Models\Book $book
      * @return Renderable
      */
@@ -56,10 +56,10 @@ class ClientBorrowController extends Controller
 
     /**
      * Handle borrow form.
-     * 
+     *
      * @param \App\Http\Requests\Client\BorrowBookRequest $request
      * @param \App\Models\Book $book
-     * 
+     *
      * @return Renderable
      */
     public function store(BorrowBookRequest $request, Book $book)
@@ -83,7 +83,7 @@ class ClientBorrowController extends Controller
 
     /**
      * Display the specified borrow form
-     * 
+     *
      * @param \App\Models\Book $book
      * @return Renderable
      */
@@ -138,7 +138,7 @@ class ClientBorrowController extends Controller
 
     /**
      * Display the specified borrow form
-     * 
+     *
      * @param \App\Models\Book $book
      * @return Renderable
      */
