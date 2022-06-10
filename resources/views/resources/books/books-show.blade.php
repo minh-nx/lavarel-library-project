@@ -1,10 +1,10 @@
-<x-layouts.default-layout :title="$book->title" selected="Book" layoutAttributes="id=manage" class="flex-collum">
+<x-layouts.default-layout :title="$book->title" selected="Book" layoutAttributes="id=manage">
     <x-slot:links>
         {{-- <link rel="stylesheet" href="{{ asset('css/style.css') }}"/> --}}
         <link rel="stylesheet" href="{{ asset('css/Booksample.css') }}"/>
     </x-slot>
   
-    <x-slot:content>
+    <x-slot:content class="flex-collum">
         <div class="flex-row">
             <div class="leftside-inside"></div>
 

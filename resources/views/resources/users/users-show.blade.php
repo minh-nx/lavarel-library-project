@@ -1,4 +1,4 @@
-<x-layouts.default-layout title="Profile" id="userForm" selected="User">
+<x-layouts.default-layout title="Profile" selected="User" layoutAttributes="">
     <x-slot:links>
         <link rel="stylesheet" href="{{ asset('css/userForm.css') }}"/>
         <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
@@ -8,7 +8,7 @@
         />
     </x-slot>
   
-    <x-slot:content>
+    <x-slot:content id="userForm">
         <div class="displayinfo">
             <h3>Display Info</h3>
         </div>

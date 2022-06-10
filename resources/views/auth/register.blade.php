@@ -1,4 +1,4 @@
-<x-layouts.default-layout title="Sign up" id="home">
+<x-layouts.default-layout title="Sign up">
     <x-slot:links>
         <link rel="stylesheet" href="{{ asset('css/auth-style.css') }}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -6,7 +6,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
     </x-slot>
 
-    <x-slot:content>
+    <x-slot:content id="home">
     {{-- Body zone: Edit every body part here --}}
     <div class="page-body page-background-img">
         {{-- <img class= "background-img" src="./img/signup-background-img.jpg" alt="background-image"> --}}

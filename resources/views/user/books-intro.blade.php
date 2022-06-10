@@ -1,4 +1,4 @@
-<x-layouts.default-layout title="Book" selected="Book" class="book">
+<x-layouts.default-layout title="Book" selected="Book">
     <x-slot:links>
         <link rel="stylesheet" href="{{ asset('css/book_shelf.css') }}" />
         <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
@@ -23,7 +23,7 @@
         />
     </x-slot>
   
-    <x-slot:content>
+    <x-slot:content class="book">
         <div class="container">
             <div class="container__title"><h2>Book shelf</h2></div>
             <div class="container__desc"><span>Explore our collection</span></div>

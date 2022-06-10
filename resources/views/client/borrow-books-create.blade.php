@@ -1,10 +1,10 @@
-<x-layouts.default-layout title="Borrow book" selected="Book" layoutAttributes="id=manage" class="flex-column">
+<x-layouts.default-layout title="Borrow book" selected="Book" layoutAttributes="id=manage">
     <x-slot:links>
         {{-- <link rel="stylesheet" href="{{ asset('css/style.css') }}"/> --}}
         <link rel="stylesheet" href="{{ asset('css/Borrowbook.css') }}"/>
     </x-slot>
   
-    <x-slot:content>
+    <x-slot:content class="flex-column">
         <div class="leftside">
             <img src="{{ $book->cover_image }}" alt="{{ $book->title }}'s cover" class="book-image">
         </div>

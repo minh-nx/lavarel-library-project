@@ -242,7 +242,7 @@ class Book extends Model
      *
      * @param int|User $user
      * 
-     * @return string
+     * @return bool
      */
     public function isUserBorrowing($user) : bool
     {

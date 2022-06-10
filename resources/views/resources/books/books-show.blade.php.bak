@@ -1,4 +1,4 @@
-<x-layouts.default-layout :title="$book->slug" id="book" selected="Book">
+<x-layouts.default-layout :title="$book->slug" selected="Book">
   <x-slot:links>
     <link rel="stylesheet" href="{{ asset('css/book.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
@@ -23,7 +23,7 @@
     />
   </x-slot>
 
-  <x-slot:content>
+  <x-slot:content id="book">
     <div class="book__main">
       <div class="book__image">
           <img src="{{ $book->cover_image }}" alt="{{ $book->title }}'s cover" />

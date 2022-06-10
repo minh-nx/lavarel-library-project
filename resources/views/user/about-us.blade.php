@@ -1,4 +1,4 @@
-<x-layouts.default-layout title="About us" id="home" selected="About">
+<x-layouts.default-layout title="About us" selected="About">
     <x-slot:links>
         <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,7 +21,7 @@
         />
     </x-slot>
 
-    <x-slot:content>
+    <x-slot:content id="home">
         <div class="intro">
             <img
             src="https://static.wixstatic.com/media/55bfa7_a1cb724e667646aaa41a65387487a6eb~mv2.png/v1/crop/x_52,y_0,w_1197,h_867/fill/w_809,h_586,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/library1.png"

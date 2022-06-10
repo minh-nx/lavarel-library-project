@@ -19,10 +19,10 @@ class ClientBorrowController extends Controller
      * 
      * @return Renderable
      */
-    public function index()
+    public function index(User $user)
     {
         Gate::authorize('books.borrows.read');
-        $user = auth()->user();
+        //$user = auth()->user();
 
         $records = BorrowsHistory::with('book')->whereBelongsTo($user)
                                                ->orderBy('borrowed_date', 'DESC')

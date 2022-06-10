@@ -1,4 +1,4 @@
-<x-layouts.default-layout title="Home" id="home" selected="Home">
+<x-layouts.default-layout title="Home" selected="Home">
     <x-slot:links>
         {{-- <link rel="stylesheet" href="{{ asset('css/style.css') }}" /> --}}
         <link rel="stylesheet" href="{{ asset('css/main.css') }}"/>
@@ -24,7 +24,7 @@
         />
     </x-slot>
 
-    <x-slot:content>
+    <x-slot:content id="home">
         <div class="intro">
             <div class="intro__image">
                 <img

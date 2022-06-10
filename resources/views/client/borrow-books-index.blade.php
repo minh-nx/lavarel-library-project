@@ -1,4 +1,4 @@
-<x-layouts.default-layout title="Borrow History" id="borrow" selected="User">
+<x-layouts.default-layout title="Borrow History" selected="User">
     <x-slot:links>
         <link rel="stylesheet" href="{{ asset('css/history.css') }}" />
         <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
@@ -8,7 +8,7 @@
         />
     </x-slot>
   
-    <x-slot:content>
+    <x-slot:content id="borrow">
         <div class="borrowing">
             <div class="borrowing__title">
                 <h1>Borrowing</h1>

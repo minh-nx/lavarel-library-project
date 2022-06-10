@@ -1,10 +1,10 @@
-<x-layouts.default-layout title="Show feedback" selected="Book" layoutAttributes="id=manage" class="bordermother">
+<x-layouts.default-layout title="Show feedback" selected="Book" layoutAttributes="id=manage">
     <x-slot:links>
         {{-- <link rel="stylesheet" href="{{ asset('css/style.css') }}"/> --}}
         <link rel="stylesheet" href="{{ asset('css/Feedback-edit.css') }}">
     </x-slot>
   
-    <x-slot:content>
+    <x-slot:content class="bordermother">
         <div class="flex-column">
             <div class="leftside">
                 <img class="image-cover" src="{{ $book->cover_image }}" alt="{{ $book->title }}'s cover">
@@ -18,8 +18,7 @@
             </div>
         </div>
 
-        <form action="{{ route('books.feedbacks.destroy', ['book' => $book, 'feedback' => $feedback]) }}" method="post" 
-            id="form-delete">
+        <form action="{{ route('books.feedbacks.destroy', ['book' => $book, 'feedback' => $feedback]) }}" method="post" id="form-delete">
             @csrf
             @method('delete')
         </form>
