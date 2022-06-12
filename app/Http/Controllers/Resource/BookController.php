@@ -29,8 +29,11 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::with('booktypes')->orderBy('updated_at', 'DESC')->simplePaginate()->withQueryString();
-        return view('resources.books.books-index', ['books' => $books]);
+        $books = Book::with('booktypes')
+                     ->orderBy('updated_at', 'DESC')
+                     ->simplePaginate();
+
+        return view('resources.books.books-list', ['books' => $books]);
     }
 
     /**
@@ -42,7 +45,7 @@ class BookController extends Controller
     {
         $booktypes = DB::table('booktypes')->get()->pluck('name', 'id')->prepend('none');
         $books = DB::table('books')->get()->pluck('title', 'id')->prepend('none');
-        return view('resources.books.books-create')
+        return view('resources.books.books-add')
             ->with('booktypes', $booktypes)
             ->with('books', $books);
     }
@@ -55,18 +58,6 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-//        $data = $request->validate();
-//
-//        $book = new Book();
-//        $book->title = $data['title'];
-//        $book->author = $data['author'];
-//        $book->publication_year = $data['publication_year'];
-//        $book->cover_image = $data['cover-image'];
-//        $book->description = $data['description'];
-//        $book->quantity = $data['quantity'];
-//
-//        $book->save();
-
         $title = $request->input('title');
         $book = DB::table('books')
                 ->where('title', $title)
@@ -91,9 +82,9 @@ class BookController extends Controller
                     'booktype_id' => $booktype,
                 ]);
             }
-            return redirect()->route('books.index');
+            return redirect()->route('test.books.index');
         } else {
-            return redirect()->route('books.create');
+            return redirect()->route('test.books.create');
         }
     }
 
@@ -119,7 +110,7 @@ class BookController extends Controller
     {
         $booktypes = DB::table('booktypes')->get()->pluck('name', 'id')->prepend('none');
         $bookBooktypes = DB::table('book_booktype')->where('book_id', $book->id)->get()->pluck('booktype_id');
-        return view('resources.books.books-edit')
+        return view('resources.books.books-manage')
             ->with('book', $book)
             ->with('booktypes', $booktypes)
             ->with('bookBooktypes', $bookBooktypes);
@@ -155,7 +146,7 @@ class BookController extends Controller
             ]);
         }
 
-        return redirect()->route('books.index');
+        return redirect()->route('test.books.index');
     }
 
     /**
@@ -169,7 +160,7 @@ class BookController extends Controller
         DB::table('book_booktype')->where('book_id', $book->id)->delete();
         DB::table('books')->where('id', $book->id)->delete();
 
-        return redirect()->route('books.index');
+        return redirect()->route('test.books.index');
     }
 
     /**
@@ -180,7 +171,7 @@ class BookController extends Controller
      */
     public function confirm(Book $book)
     {
-        return view('resources.books.books-confirm')
-            ->with('id', $book->id);
+        return view('resources.books.books-delete')
+            ->with('book', $book);
     }
 }

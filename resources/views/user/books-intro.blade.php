@@ -1,4 +1,4 @@
-<x-layouts.default-layout title="Book" selected="Book">
+<x-layouts.default-layout title="Book" selected="Book" class="book">
     <x-slot:links>
         <link rel="stylesheet" href="{{ asset('css/book_shelf.css') }}" />
         <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
@@ -23,7 +23,7 @@
         />
     </x-slot>
   
-    <x-slot:content class="book">
+    <x-slot:content>
         <div class="container">
             <div class="container__title"><h2>Book shelf</h2></div>
             <div class="container__desc"><span>Explore our collection</span></div>
@@ -39,9 +39,7 @@
                     @foreach ($books as $book)
                         <div class="book__slot">
                             <div class="book__img">
-                                <a href="{{ route('books.show', ['book' => $book]) }}">
-                                    <img class="img__book" src="{{ $book->cover_image }}" alt="{{ $book->title }}'s cover" />
-                                </a>
+                                <img class="img__book" src="{{ $book->cover_image }}" alt="{{ $book->title }}'s cover" />
                             </div>
                             <div>
                                 <a href="{{ route('users.books.borrows.create', ['book' => $book]) }}">

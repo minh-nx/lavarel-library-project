@@ -25,7 +25,7 @@ require __DIR__.'/client.php';
 
 Route::middleware(['auth', 'verified'])->group(function() {
     Route::resource('users', \App\Http\Controllers\Resource\UserController::class);
-    Route::resource('books', \App\Http\Controllers\Resource\BookController::class);
+//    Route::resource('books', \App\Http\Controllers\Resource\BookController::class);
     Route::resource('books.feedbacks', \App\Http\Controllers\Resource\FeedbackController::class);
 
     Route::get('/search-books', [\App\Http\Controllers\User\SearchBookController::class, 'index'])->name('books.search-page');
@@ -36,8 +36,9 @@ Route::group(['middleware' => ['role_or_permission:superadmin|account.manage']],
     Route::resource('permissions', \App\Http\Controllers\PermissionController::class);
 });
 
+
 //Only for testing purposes
-Route::prefix('test')->group( function() {
+Route::prefix('test')->name('test.')->group( function() {
     Route::get('auto-login', [\App\Http\Controllers\Auth\LoginController::class, 'autoLogin'])->name('auto-login');
     Route::resource('books', \App\Http\Controllers\Resource\BookController::class);
     Route::get('/books-delete-confirm/{book}', [\App\Http\Controllers\Resource\BookController::class, 'confirm'])->name('books.confirm');

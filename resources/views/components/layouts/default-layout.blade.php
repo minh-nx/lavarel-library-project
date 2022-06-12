@@ -18,14 +18,14 @@
     @endisset
 </head>
 
-<body>
+<body {{ $attributes }} >
 {{-- Header zone --}}
-<div {{ $layoutAttributes ?? $attributes }}>
+<div {{ $layoutAttributes ?? $content->attributes }}>
     <x-layouts.header :selected="$selected" id="header"/>
 </div>
 
 {{-- Main content --}}
-<div {{ $attributes }}>
+<div {{ $content->attributes }}>
     {{ $content }}
 </div>
 
@@ -33,7 +33,7 @@
 {{ $slot }}
 
 {{-- Footer zone --}}
-<div {{ $layoutAttributes ?? $attributes }}>
+<div {{ $layoutAttributes ?? $content->attributes }}>
     <x-layouts.footer id="footer"/>
 </div>
 

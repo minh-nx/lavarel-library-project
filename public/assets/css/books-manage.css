@@ -17,26 +17,26 @@ small
 
 #bordermother
 {
-    width: auto;
+    width: 40%;
     height: auto;
     background-color: #F3F6F4;
     border-radius: 30px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 500px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -60%);
+    margin-top: 30%;
+    margin-bottom: 30%;
 }
 
-h1
+.manage-heading
 {
+    margin-top: 20%;
     text-align: center;
     font-family: sans-serif;
     color: #3F7652;
-    size: 40px;
+    font-size: 300%;
 }
+
+
 
 input[type=text]
 {
@@ -56,15 +56,16 @@ input[type=number]
 
 input[type=file]
 {
-    width: 90%;
-    height: 50px;
-    padding: 1px 2px;
+    max-width: 90%;
     border-radius: 5px;
     background-color: #E1E7E3;
 }
 
 .booktype
 {
+    flex: 50%;
+    margin-left: 10%;
+    width: 80%;
     font-family: sans-serif;
     color: #3F7652;
 }
@@ -76,55 +77,23 @@ textarea
     background-color: #E1E7E3;
 }
 
-input[type=submit]
-{
-    width: 30%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
 input[type=submit]:hover
 {
-    background-color: #45a049;
-}
-
-input[type=reset]
-{
-    width: 30%;
-    background-color: lightyellow;
-    color: purple;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    background-color: darkgreen;
 }
 
 input[type=reset]:hover
 {
-    background-color: lightpink;
+    background-color: darkkhaki;
 }
 
-.delete-book
-{
-    text-align: center;
-    width: 30%;
-    background-color: lightcoral;
-    color: whitesmoke;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
+.container {
+    font-family: sans-serif;
+    border:2px solid #ccc;
+    overflow-y: scroll;
+    height: 100px;
     border-radius: 5px;
-    cursor: pointer;
-}
-.delete-book:hover
-{
-    background-color: darkred;
+    background-color: #E1E7E3
 }
 
 .flex-row
@@ -141,13 +110,13 @@ input[type=reset]:hover
 .leftside
 {
     flex: 50%;
-    padding: 10px;
+    margin-left: 10%;
 }
 
 .rightside
 {
     flex: 50%;
-    padding: 10px;
+    padding-left: 10%;
 }
 
 .testalign
@@ -155,18 +124,35 @@ input[type=reset]:hover
     font-family: sans-serif;
     text-align: center;
     color: #3F7652;
-    size: 16px;
+    font-size: 100%;
+    margin-bottom: 10%;
 }
 
-.container {
-    font-family: sans-serif;
-    border:2px solid #ccc;
-    overflow-y: scroll;
-    width: 90%;
-    height: 100px;
-    border-radius: 5px;
-    background-color: #E1E7E3
+.this-is-the-class-hold-class-button
+{
+    margin-left: 10%;
 }
+.button
+{
+    text-align: left;
+}
+.button-design
+{
+    padding: 3%;
+    width: 15%;
+    text-decoration: none;
+    background-color: #3F7652;
+    color: whitesmoke;
+    border-radius: 30px;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+
+.button-design:hover
+{
+    background-color: darkred;
+}
+
 
 li
 {
@@ -200,7 +186,7 @@ nav
 {
     color: #220d10;
 }
-  nav > ul {
+nav > ul {
     font-size: large;
     color: #220d10;
     display: flex;

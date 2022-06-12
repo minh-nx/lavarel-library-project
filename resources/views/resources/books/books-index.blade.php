@@ -9,7 +9,7 @@
 @section('buttons')
     <div>
         <div style="float:left;">
-            <a class="btn btn-primary" href="{{ route('books.create') }}" role="button" style="display: inline-block"><i class="fa-solid fa-plus"></i> Add New Book</a>
+            <a class="btn btn-primary" href="{{ route('test.books.create') }}" role="button" style="display: inline-block"><i class="fa-solid fa-plus"></i> Add New Book</a>
         </div>
         <div style="float:right">
             {{ $books->links() }}

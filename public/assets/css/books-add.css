@@ -6,6 +6,15 @@ body
     height: auto;
 }
 
+small
+{
+    font-style: italic;
+    font-family: sans-serif;
+    font-size: small;
+    color: red;
+    visibility: hidden;
+}
+
 #bordermother
 {
     width: 40%;
@@ -16,7 +25,6 @@ body
     margin-right: auto;
     margin-top: 30%;
     margin-bottom: 30%;
-    text-align: center;
 }
 
 .manage-heading
@@ -28,16 +36,45 @@ body
     font-size: 300%;
 }
 
-.warning
+input[type=text]
 {
-    margin-top: 20%;
-    margin-bottom: 20%;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    font-size: 150%;
+    width: 190px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #E1E7E3;
 }
 
+input[type=number]
+{
+    width: 190px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #E1E7E3;
+}
+
+input[type=file]
+{
+    width: 90%;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #E1E7E3;
+}
+
+.booktype
+{
+    flex: 50%;
+    margin-left: 10%;
+    width: 80%;
+    font-family: sans-serif;
+    color: #3F7652;
+}
+
+textarea
+{
+    height: 200px;
+    width: 90%;
+    background-color: #E1E7E3;
+}
 
 input[type=submit]
 {
@@ -59,8 +96,46 @@ input[type=submit]:hover
     background-color: #45a049;
 }
 
+.flex-row
+{
+    padding-left: 10px;
+    display: flex;
+    flex-direction: row;
+    font-family: sans-serif;
+    color: #3F7652;
+    text-align: left;
+    size: 16px;
+}
 
+.leftside
+{
+    flex: 50%;
+    margin-left: 10%;
+}
 
+.rightside
+{
+    flex: 50%;
+    padding-left: 10%;
+}
+
+.testalign
+{
+    font-family: sans-serif;
+    text-align: center;
+    color: #3F7652;
+    font-size: 100%;
+    margin-bottom: 10%;
+}
+
+.container {
+    font-family: sans-serif;
+    border:2px solid #ccc;
+    overflow-y: scroll;
+    height: 100px;
+    border-radius: 5px;
+    background-color: #E1E7E3
+}
 
 li
 {
@@ -74,7 +149,6 @@ a
 header
 {
     position: relative;
-    top: 0;
     padding: 0 2rem;
     height: 15rem;
     display: flex;
@@ -118,6 +192,8 @@ nav > ul > li:last-child
 
 #manage
 {
+    margin-top: 0px;
+    margin-bottom: auto;
     position: relative;
     font-family: "Raleway", sans-serif;
     background-color: transparent;

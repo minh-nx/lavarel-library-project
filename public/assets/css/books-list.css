@@ -6,61 +6,84 @@ body
     height: auto;
 }
 
-#bordermother
+input[type=text]
 {
-    width: 40%;
-    height: auto;
-    background-color: #F3F6F4;
-    border-radius: 30px;
+    width: 10%;
+    height: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    padding: 12px 20px 12px 20px;
+    transition: width 0.4s ease-in-out;
+    margin-left: 1200px;
+}
+
+.booklist
+{
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(155, 241, 155);
+    text-align: center;
+    font-size: 50px;
+}
+
+
+.book-image
+{
     margin-left: auto;
     margin-right: auto;
-    margin-top: 30%;
-    margin-bottom: 30%;
-    text-align: center;
-}
-
-.manage-heading
-{
-    margin-top: 20%;
-    text-align: center;
-    font-family: sans-serif;
-    color: #3F7652;
-    font-size: 300%;
-}
-
-.warning
-{
     margin-top: 20%;
     margin-bottom: 20%;
-    margin-left: auto;
-    margin-right: auto;
+    max-height: 120px;
+}
+
+table
+{
     text-align: center;
-    font-size: 150%;
-}
-
-
-input[type=submit]
-{
+    font-size: 100%;
+    font-style: italic;
+    font-family: serif;
     width: 90%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 2%;
-    margin-top: 2%;
-    margin-bottom: 3%;
     margin-left: auto;
     margin-right: auto;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    border-radius: 10px;
+    background-color: #96D4D4;
 }
-
-input[type=submit]:hover
+table, th, td
 {
-    background-color: #45a049;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    border-color: transparent;
 }
 
+th
+{
+    font-size: 150%;
+    font-style:normal;
+}
+tr:hover
+{
+    background-color: whitesmoke;
+}
+th
+{
+    color: red;
+}
 
+a:link
+{
+    color: blue;
+}
 
+a:visited
+{
+    color: purple;
+}
+
+a:hover
+{
+    text-decoration: underline;
+}
 
 li
 {
@@ -95,14 +118,14 @@ nav
 {
     color: #220d10;
 }
-nav > ul {
+  nav > ul {
     font-size: large;
     color: #220d10;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
-
+  
 nav > ul > li
 {
     margin-left: 5rem;
@@ -110,7 +133,7 @@ nav > ul > li
     font-size: 1.6rem;
     line-height: 5rem;
 }
-
+  
 nav > ul > li:last-child
 {
     margin-right: 0;
