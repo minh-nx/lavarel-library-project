@@ -7,6 +7,7 @@ use App\Http\Requests\Resources\BookRequest;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class BookController extends Controller
@@ -43,7 +44,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        $booktypes = DB::table('booktypes')->get()->pluck('name', 'id')->prepend('none');
+        $booktypes = DB::table('booktypes')->get()->pluck('name', 'id');
         $books = DB::table('books')->get()->pluck('title', 'id')->prepend('none');
         return view('resources.books.books-add')
             ->with('booktypes', $booktypes)
@@ -63,15 +64,23 @@ class BookController extends Controller
                 ->where('title', $title)
                 ->get();
 
+        if($request->hasFile('cover-image')) {
+            $imageFile = $request->file('cover-image');
+            $imageName = $imageFile->getClientOriginalName();
+            $path = $imageFile->move('images', $imageName);
+        }
+
         if($book != null) {
             $id = DB::table('books')->insertGetId([
                 'title' => $title,
                 'slug' => Str::slug($title),
                 'author' => $request->input('author'),
                 'publication_year' => $request->input('publication_year'),
-                'cover_image' => 'http://localhost/storage/images/book-covers/sample-book-cover.png',
+                'cover_image' => url('images/' . $imageName),
                 'description' => $request->input('description'),
                 'quantity' => $request->input('quantity'),
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
 
             $booktypes = $request->input('booktype_ids');
@@ -108,7 +117,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        $booktypes = DB::table('booktypes')->get()->pluck('name', 'id')->prepend('none');
+        $booktypes = DB::table('booktypes')->get()->pluck('name', 'id');
         $bookBooktypes = DB::table('book_booktype')->where('book_id', $book->id)->get()->pluck('booktype_id');
         return view('resources.books.books-manage')
             ->with('book', $book)
@@ -134,6 +143,7 @@ class BookController extends Controller
             'cover_image' => 'http://localhost:8080/assets/img/book.png',
             'description' => $request->input('description'),
             'quantity' => $request->input('quantity'),
+            'updated_at' => now(),
         ]);
 
         $booktypes = $request->input('booktype_ids');

@@ -1,8 +1,16 @@
-<x-layouts.default-layout title="Edit Profile" selected="Admin" layoutAttributes="id=manage">
+<x-layouts.default-layout title="Edit Book" selected="Admin" layoutAttributes="id=manage">
     <x-slot:links>
         <link rel="stylesheet" href="{{ asset('css/books-manage.css') }}"/>
-{{--        <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>--}}
-    </x-slot>
+    </x-slot:links>
+
+    <script language="JavaScript">
+        function toggleSelect(target) {
+            checkboxes = document.getElementsByName('booktype_ids[]');
+            for(var i=0, n=checkboxes.length; i<n; i++) {
+                checkboxes[i].checked = target.checked;
+            }
+        }
+    </script>
 
     <x-slot:content id="bordermother">
         <h1 class="manage-heading">Manage Book</h1>
@@ -38,13 +46,13 @@
                     <span><small></small></span>
                     <div>Types of Book</div>
                     <div class="container">
+                        <input class="form-control" type="checkbox" onclick="toggleSelect(this)">none<br>
                         @foreach($booktypes as $id => $display)
                             <input class="form_control" type="checkbox" id="booktype_ids" name="booktype_ids[]" value="{{ $id }}" {{ (isset($bookBooktypes) && (\Illuminate\Support\Facades\DB::table('book_booktype')->where('book_id', $book->id)->where('booktype_id', $id)->get()->first() != null)) ? 'checked' : '' }}>
                             <label for="booktype_ids">{{ $display }}</label><br>
                         @endforeach
                     </div>
-                    <span><small></small></span>
-                    <br>
+                    <span><small></small></span><br>
                     <label for="description">Description</label>
                     <textarea name="description"
                               class="form-control"
@@ -52,11 +60,9 @@
                               placeholder="Add some description here..."
                               rows="10"
                               cols="60"
-                              style="resize: none;">{{ $book->description ?? '' }}
-                    </textarea>
+                              style="resize: none;">{{ $book->description ?? '' }}</textarea><br>
                 </div>
-                <span><small></small></span>
-                <br>
+                <span><small></small></span><br>
                 <div class="this-is-the-class-hold-class-button">
                     <div class="button">
                         <a href="{{ route('test.books.confirm', ['book' => $book]) }}"><button class="button-design">Delete</button></a>
@@ -67,5 +73,5 @@
                 </div>
             </div>
         </form>
-    </x-slot>
+    </x-slot:content>
 </x-layouts.default-layout>

@@ -15,6 +15,7 @@
 
             <div>
                 <h1 class="booklist">Book List</h1>
+                {{ $books->links() }}
                 <table>
                     <tr>
                         <th style="size:20%">Cover Image</th>
@@ -25,7 +26,7 @@
                         <th style="size:10%">Rating</th>
                         <th style="size:10%">Status</th>
     {{--                        @can('books.update')--}}
-                        <th style="size:10%; text-align: center">Action</th>
+                        <th style="size:10%">Action</th>
     {{--                        @endcan--}}
                     </tr>
                     <tbody>
@@ -40,7 +41,7 @@
                                 <td>{{ $book->author }}</td>
                                 <td>{{ $book->publication_year }}</td>
                                 <td>{{ booktypesString($book->booktypes) }}</td>
-                                <td>{{ bookAvgRating($book) ?? '--' }}</td>
+                                <td>{{ bookAvgRating($book) ?? '-' }}</td>
                                 <td>{{ $book->status }}</td>
 {{--                                @can('books.update')--}}
                                     <td><a href="{{ route('test.books.edit', ['book' => $book]) }}"><i class="fa-solid fa-pen-to-square"></i> Edit</a></td>
